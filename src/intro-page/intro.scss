@@ -1,7 +1,155 @@
 @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;700&family=Mulish:wght@400;600&display=swap');
+@import '../additional/variables.scss';
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: $bg;
+  font-family: $f_standart;
+}
+.logo-wrapper {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  z-index: 8;
+  display: flex;
+  align-items: center;
+  h2 {
+    font-size: 80px;
+    font-family: $f_songbird;
+    position: relative;
+    text-shadow: 1px 1px 5px black;
+  }
+  h2:first-of-type {
+    color: $primary;
+    top: -30px;
+  }
+  h2:last-of-type {
+    color: $secondary;
+    top: 10px;
+  }
+  img {
+    width: auto;
+    height: 160px;
+    position: relative;
+    left: 20px;
+    filter: drop-shadow(1px 1px 5px black);
+  }
+}
+.main-container {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+}
+.wrapper {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  display: grid;
+  grid-gap: 0.2rem;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  grid-auto-rows: minmax(calc(100vh / 6), calc(100vh / 8));
+}
+.image_wrapper {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  background: url('../assets/icons/bird-logo-viol.svg');
+  background-size: 200% auto;
+  background-position: center;
+  background-repeat: no-repeat;
+  filter: blur(6px) saturate(30%);
+  transition: 0.4s;
+  &::before {
+    content: '';
+  }
+  &:hover {
+    filter: blur(0px);
+    transform: scale(1.1);
+    background-size: cover;
+    z-index: 5;
+    border-radius: 50%;
+    box-shadow: 0 0 30px $primary;
+    &::before {
+      content: '?';
+      display: block;
+
+      position: relative;
+      z-index: 7;
+      right: -50%;
+      top: -10%;
+      font-size: 70px;
+      font-weight: bold;
+      color: transparent;
+      -webkit-text-stroke-width: 2px;
+      -webkit-text-stroke-color: $primary;
+      text-align: center;
+    }
+  }
+}
+a {
+  text-decoration: none;
+  color: $primary;
+  transition: 0.3s;
+  &:visited {
+    text-decoration: none;
+  }
+  &:hover {
+    text-decoration: none;
+    text-shadow: 0 0 5px $primary;
+  }
+  &:active {
+    transform: scale(0.9);
+  }
+}
+.invite {
+  background: transparent;
+  position: absolute;
+  z-index: 8;
+  border-radius: 10px;
+  transform-origin: center;
+  bottom: 0;
+  transform: scale(0) translateX(-50%);
+  transition: 0.5s;
+  display: flex;
+  padding: 30px;
+  justify-content: center;
+  align-items: center;
+  gap: 10%;
+  color: $primary;
+  font-size: 34px;
+
+  text-align: center;
+  text-shadow: 1px 1px 5px black;
+
+  animation: appear 2s forwards;
+
+  @media (max-width: 800px) {
+    flex-direction: column;
+    gap: 40px;
+  }
+}
+
+@keyframes appear {
+  from {
+    transform: scale(0) translateY(0);
+  }
+  to {
+    transform: scale(1) translateY(-60%);
+  }
+}
+
+.btn {
+  border: 3px solid $primary;
+  border-radius: 10px;
+  padding: 10px 10px 12px 10px;
+  text-align: center;
+  cursor: pointer;
 }
