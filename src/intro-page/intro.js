@@ -1,1 +1,2 @@
-import "./intro.scss";
+import '../additional/variables.scss';
+import './intro.scss';
