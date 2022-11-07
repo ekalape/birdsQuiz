@@ -23,6 +23,7 @@ header {
   align-items: center;
   height: 70px;
   padding: 10px 20px;
+  z-index: 2;
 }
 .logo-wrapper {
   font-family: $f_songbird;
@@ -134,4 +135,56 @@ header {
   height: 5px;
   border-radius: 2px;
   background-color: $secondary;
+}
+
+.menu-mobile {
+  display: none;
+  @media (max-width: 740px) {
+    top: -50%;
+    right: -50%;
+    width: 40%;
+    position: fixed;
+    background: $bg_alt;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 20px 20px 30px 40px;
+    gap: 20px;
+    transform: scale(0);
+    transition: 1s;
+    z-index: 1;
+    border-bottom-left-radius: 10px;
+  }
+  @media (max-width: 560px) {
+    width: 60%;
+  }
+  @media (max-width: 400px) {
+    width: 80%;
+  }
+}
+.menu-mobile__options {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+/* burger close animation */
+.menu-mobile.open {
+  top: 70px;
+  right: 0;
+  transform: scale(1);
+}
+.hamburger.open .line {
+  transform-origin: left;
+  &:first-of-type {
+    transform: rotate(30deg);
+  }
+  &:nth-of-type(2) {
+    opacity: 0;
+  }
+  &:last-of-type {
+    transform: rotate(-30deg);
+  }
 }
