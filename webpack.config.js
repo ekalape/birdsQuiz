@@ -15,8 +15,8 @@ const devServer = (isDev) =>
     ? {}
     : {
         devServer: {
-          // open: ['./quiz-page/quiz.html'],
-          open: ['./intro-page/'],
+          open: ['./quiz-page/quiz.html'],
+          // open: ['./intro-page/'],
           hot: true,
           port: 5501,
           static: path.resolve(__dirname, 'src'),

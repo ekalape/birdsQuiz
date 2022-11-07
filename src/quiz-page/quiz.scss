@@ -1,7 +1,24 @@
 @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;700&family=Mulish:wght@400;600&display=swap');
+@import '../assets/styles/variables.scss';
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+html {
+  font-size: 20px;
+  @media (max-width: 800px) {
+    font-size: 18px;
+  }
+  @media (max-width: 600px) {
+    font-size: 16px;
+  }
+  @media (max-width: 400px) {
+    font-size: 14px;
+  }
+}
+body {
+  background-color: $bg;
+  font-family: $f_standart;
 }

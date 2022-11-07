@@ -1,7 +1,10 @@
-import '../additional/variables.scss';
+import '../assets/styles/variables.scss';
 import './intro.scss';
 
-import elGenerator from '../additional/elGenerator.js';
+import '../assets/icons/bird-logo-yellow.svg';
+import '../assets/icons/bird-logo-viol.svg';
+
+import elGenerator from '../assets/scripts/elGenerator.js';
 
 getImgs();
 const cont = document.querySelector('.wrapper');

@@ -1,0 +1,137 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;700&family=Mulish:wght@400;600&display=swap');
+@import './variables.scss';
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  transition: 0.4s;
+}
+a {
+  text-decoration: none;
+  &:visited,
+  &:hover,
+  &:active {
+    text-decoration: none;
+  }
+}
+header {
+  background-color: $bg_alt;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 70px;
+  padding: 10px 20px;
+}
+.logo-wrapper {
+  font-family: $f_songbird;
+  font-size: 40px;
+  position: relative;
+  font-family: $f_songbird;
+  cursor: default;
+  display: flex;
+  flex-wrap: nowrap;
+  img {
+    width: 50px;
+    height: 50px;
+    position: relative;
+  }
+  span:first-of-type {
+    color: $primary;
+    position: relative;
+    top: -9px;
+    //left: -0.3125rem;
+  }
+  span:last-of-type {
+    color: $secondary;
+    position: relative;
+    // left: -0.3125rem;
+    top: 9px;
+  }
+}
+.menu-wrapper {
+  flex-grow: 1;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  @media (max-width: 740px) {
+    display: none;
+  }
+}
+.menu__item {
+  font-family: $f_standart;
+  font-size: 1rem;
+  color: $secondary;
+  &.active {
+    color: $primary;
+    pointer-events: none;
+  }
+  &:hover:not(&.active) {
+    color: $primary;
+  }
+  &:active:not(&.active) {
+    transform: scale(0.9);
+  }
+}
+.options-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  @media (max-width: 740px) {
+    display: none;
+  }
+}
+.lang-switcher {
+  font-family: $f_standart;
+  font-size: 1rem;
+  color: $secondary;
+  text-transform: uppercase;
+  cursor: pointer;
+
+  &:hover {
+    color: $primary;
+  }
+  &:active {
+    //font-size: 0.9rem;
+    transform: scale(0.9);
+  }
+}
+.theme-switcher {
+  width: 1.8rem;
+  height: 1.8rem;
+  background-image: url('../../assets/icons/sun.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  filter: $filter_viol-light;
+  cursor: pointer;
+  &:hover {
+    filter: $filter_yellow;
+  }
+  &:active {
+    transform: scale(0.9);
+  }
+}
+.hamburger {
+  display: none;
+  @media (max-width: 740px) {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+    &:hover .line {
+      background-color: $primary;
+    }
+  }
+}
+.line {
+  display: block;
+  width: 40px;
+  height: 5px;
+  border-radius: 2px;
+  background-color: $secondary;
+}
