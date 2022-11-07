@@ -5,7 +5,9 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  // border: 1px solid red;
 }
+
 html {
   font-size: 20px;
   @media (max-width: 800px) {
@@ -18,6 +20,11 @@ html {
     font-size: 14px;
   }
 }
+button {
+  border: none;
+  text-decoration: none;
+  box-shadow: none;
+}
 body {
   width: 100%;
   height: 100%;
@@ -28,4 +35,141 @@ body {
 main {
   width: 100%;
   height: calc(100vh - 50px - 70px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+/* -----------------------next-btn----------------------- */
+.next-btn {
+  @include btn(160px, 60px);
+  margin-top: 30px;
+
+  text-align: start;
+  padding-left: 33px;
+  padding-top: 13px;
+  position: relative;
+
+  &::after {
+    content: '';
+    display: block;
+    width: 26px;
+    height: 26px;
+    background-image: url('../assets/icons/dobbleNext.png');
+    background-size: cover;
+    background-position: center;
+    filter: $filter_viol-light;
+    position: relative;
+    top: -24px;
+    right: -75px;
+  }
+
+  &.disabled {
+    color: $disabled;
+    border: 3px solid $disabled;
+    pointer-events: none;
+    &.disabled::after {
+      filter: $filter_disabled;
+    }
+  }
+}
+
+/* -----------main game container ----------*/
+.quiz-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 100px auto auto;
+  gap: 20px;
+  padding: 0 20px;
+  width: 100%;
+}
+.storyline-block {
+  grid-column: 1/3;
+  padding: 5px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  @media (min-width: 1400px) {
+    margin: 0 10%;
+  }
+}
+.round {
+  width: 60px;
+  height: 60px;
+  border-radius: 10px;
+  border: 3px solid $secondary;
+  color: $secondary;
+  text-align: center;
+  font-size: 32px;
+  padding: 7px;
+  cursor: default;
+  @media (max-width: 700px) {
+    width: 50px;
+    height: 50px;
+    font-size: 28px;
+    padding: 5px;
+  }
+  @media (max-width: 560px) {
+    width: 40px;
+    height: 40px;
+    font-size: 26px;
+    padding: 0px;
+  }
+}
+/* ------------------------------------------------other options---------------------------------- */
+.inprogress {
+  border: 3px solid $primary;
+  color: $primary;
+  background-color: $secondary;
+  width: 80px;
+  height: 80px;
+  font-size: 48px;
+  box-shadow: 0px 0px 7px 1px $primary;
+
+  @media (max-width: 700px) {
+    padding: 7px;
+    width: 70px;
+    height: 70px;
+    font-size: 38px;
+  }
+  @media (max-width: 560px) {
+    width: 54px;
+    height: 54px;
+    font-size: 32px;
+    padding: 3px;
+  }
+}
+.perfect-result {
+  border: 3px solid $right;
+  color: $right;
+}
+.worst-result {
+  border: 3px solid $wrong;
+  color: $wrong;
+}
+/* ----------------------------------------------------------------------------------------------- */
+
+.arrow {
+  width: 30px;
+  height: 30px;
+  // background-image: url('../assets/icons/next2.png');
+  background-image: url('../assets/icons/dobbleNext.png');
+  background-size: cover;
+  background-position: center;
+  filter: $filter_viol-light;
+  @media (max-width: 800px) {
+    width: 22px;
+    height: 22px;
+  }
+  @media (max-width: 450px) {
+    display: none;
+  }
+}
+.disabled-text {
+  color: $disabled;
+}
+.disabled-btn {
+  border: 3px solid $disabled;
+}
+.disabled-arrow {
+  filter: $filter_disabled;
 }
