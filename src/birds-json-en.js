@@ -17,8 +17,7 @@ const birdsDataEn = [
       description:
         'The sounds made by the crane are similar to the voiced “kur-ly - kur-ly”. Cranes most often sing in a duet - one bird begins the song with the syllable "kur", and the second picks up "ly". If a bird sings alone, then it makes only “kur” sound.',
       image: 'https://live.staticflickr.com/65535/49221158846_b0b69a58f1.jpg',
-      audio:
-        'https://www.xeno-canto.org/sounds/uploaded/BLMSIUFTFU/XC512582-190604_1087_Grus_tok.mp3',
+      audio: 'https://www.xeno-canto.org/sounds/uploaded/BLMSIUFTFU/XC512582-190604_1087_Grus_tok.mp3',
     },
     {
       id: 3,
@@ -69,8 +68,7 @@ const birdsDataEn = [
       description:
         'Sparrows are the most famous and recognizable birds. They are easily recognizable by their colorful plumage and perky chirping. Sparrows belong to the synotropic species - they settle close to human habitation.',
       image: 'https://live.staticflickr.com//65535//49366595303_06cf65b07e.jpg',
-      audio:
-        'https://www.xeno-canto.org/sounds/uploaded/CXFHOPIVAS/XC503224-191020_0134.mp3',
+      audio: 'https://www.xeno-canto.org/sounds/uploaded/CXFHOPIVAS/XC503224-191020_0134.mp3',
     },
     {
       id: 2,
@@ -99,8 +97,7 @@ const birdsDataEn = [
       description:
         'Song thrush is the best singer from the sparrow squad. Its song consists only of beautiful sound whistles and various tracks. It can be heard in the morning and evening. Thrushes sing throughout the entire nesting period.',
       image: 'https://live.staticflickr.com/65535/48979125763_e2534f54bd.jpg',
-      audio:
-        'https://www.xeno-canto.org/sounds/uploaded/BLMSIUFTFU/XC513326-190704_1146_TF-Glogow.mp3',
+      audio: 'https://www.xeno-canto.org/sounds/uploaded/BLMSIUFTFU/XC513326-190704_1146_TF-Glogow.mp3',
     },
     {
       id: 5,
@@ -171,8 +168,7 @@ const birdsDataEn = [
       description:
         'Hoopoe prefer to live in open landscapes with individual trees or groves. The most convenient for the bird are the forest-steppe and savannah. A hoopoe can choose a place of residence next to a person: pastures, vineyards, orchards.',
       image: 'https://live.staticflickr.com//65535//49226383598_6f8be86a06.jpg',
-      audio:
-        'https://www.xeno-canto.org/sounds/uploaded/ZNCDXTUOFL/XC477326-dudek%20%282%29.mp3',
+      audio: 'https://www.xeno-canto.org/sounds/uploaded/ZNCDXTUOFL/XC477326-dudek%20%282%29.mp3',
     },
     {
       id: 6,
@@ -181,8 +177,7 @@ const birdsDataEn = [
       description:
         'Swift can be seen in almost every corner of the planet. They live both in forest areas and in open areas. Swifts live in large flocks. Large colonies of these birds can be seen in cities or on coastal cliffs.',
       image: 'https://live.staticflickr.com//65535//48386150031_7b749df74b.jpg',
-      audio:
-        'https://www.xeno-canto.org/sounds/uploaded/TMUAWSDHDJ/XC511871-G.mp3',
+      audio: 'https://www.xeno-canto.org/sounds/uploaded/TMUAWSDHDJ/XC511871-G.mp3',
     },
   ],
   [
@@ -213,8 +208,7 @@ const birdsDataEn = [
       description:
         'Starlings are migratory birds. Synchronous flight of large flocks of starlings is called murmuration. This is a beautiful and mesmerizing phenomenon - many birds seem to dance in the air, forming intricate shapes that decrease and increase in the sky.',
       image: 'https://live.staticflickr.com/65535/49357593971_9509fe1d7c.jpg',
-      audio:
-        'https://www.xeno-canto.org/sounds/uploaded/GYAUIPUVNM/XC515519-2020.01.01_17.24_01.MP3',
+      audio: 'https://www.xeno-canto.org/sounds/uploaded/GYAUIPUVNM/XC515519-2020.01.01_17.24_01.MP3',
     },
     {
       id: 4,
@@ -223,8 +217,7 @@ const birdsDataEn = [
       description:
         "The melody of the oriole's voice is compared to the sound of a flute. It is difficult for a person to see the oriole, as it lives high in the trees. The oriole is not only a very beautiful, but also a useful bird. It destroys poisonous caterpillars that other birds do not eat.",
       image: 'https://live.staticflickr.com/65535/47102184004_58a93380b9.jpg',
-      audio:
-        'https://www.xeno-canto.org/sounds/uploaded/GYAUIPUVNM/XC491801-2019.07.07_06.28_01.mp3',
+      audio: 'https://www.xeno-canto.org/sounds/uploaded/GYAUIPUVNM/XC491801-2019.07.07_06.28_01.mp3',
     },
     {
       id: 5,
@@ -255,8 +248,7 @@ const birdsDataEn = [
       description:
         'In ancient times, the eagle was a symbol of the sun. Eagles often soar above the ground, while their speed can reach 240 km / h. The illusion of slow movement is due to the flight altitude - more than 700 meters.',
       image: 'https://live.staticflickr.com//4835//43867392960_7105d71e19.jpg',
-      audio:
-        'https://www.xeno-canto.org/sounds/uploaded/KTBTZAHSXF/10_Aquila_nipalensis_al02D85.mp3',
+      audio: 'https://www.xeno-canto.org/sounds/uploaded/KTBTZAHSXF/10_Aquila_nipalensis_al02D85.mp3',
     },
     {
       id: 2,
@@ -275,8 +267,7 @@ const birdsDataEn = [
       description:
         'Hen harrier is a small falcon. It feeds mainly on mouse-like rodents, the basis of its diet is voles, hamsters, and mice. The plumage of the harrier may be ash grey. The comparison "gray-haired like a harrier" is associated with such a bird.',
       image: 'https://live.staticflickr.com/4480/37240531151_b74619c99d.jpg',
-      audio:
-        'https://www.xeno-canto.org/sounds/uploaded/BLMSIUFTFU/XC513498-190709_1175_Cir.cyan-f.mp3',
+      audio: 'https://www.xeno-canto.org/sounds/uploaded/BLMSIUFTFU/XC513498-190709_1175_Cir.cyan-f.mp3',
     },
     {
       id: 4,
@@ -285,8 +276,7 @@ const birdsDataEn = [
       description:
         'The Latin name of the falcon Falco comes from the word "sickle" because of the sickle-shaped wings. Long and wide wings allow the falcon to rise high into the sky and soar freely. The flight speed of the falcon reaches 280-320 kilometers per hour.',
       image: 'https://live.staticflickr.com//65535//49310710607_92a3a145a9.jpg',
-      audio:
-        'https://www.xeno-canto.org/sounds/uploaded/MMEJYLOPDO/XC496049-Pilgrimsfalk_06.mp3',
+      audio: 'https://www.xeno-canto.org/sounds/uploaded/MMEJYLOPDO/XC496049-Pilgrimsfalk_06.mp3',
     },
     {
       id: 5,
@@ -295,8 +285,7 @@ const birdsDataEn = [
       description:
         'All hawks are characterized by wide and short wings. Another distinguishing feature is the white "eyebrows" above the eyes. Slavic warriors placed the image of a hawk on their banners as a symbol of courage, power and ruthlessness towards enemies.',
       image: 'https://live.staticflickr.com//65535//49024617331_b9d0d2c9b3.jpg',
-      audio:
-        'https://www.xeno-canto.org/sounds/uploaded/MMEJYLOPDO/XC512740-Duvh%C3%B6k_09.mp3',
+      audio: 'https://www.xeno-canto.org/sounds/uploaded/MMEJYLOPDO/XC512740-Duvh%C3%B6k_09.mp3',
     },
     {
       id: 6,
@@ -305,8 +294,7 @@ const birdsDataEn = [
       description:
         'The flight of the eagle owl is silent, the eyesight is very sharp. These features make the bird an unsurpassed night hunter. The eagle owl has no natural enemies, not a single animal preys on adult birds. But foxes and wolves attack the chicks.',
       image: 'https://live.staticflickr.com/65535/48137123012_393653c2e4.jpg',
-      audio:
-        'https://www.xeno-canto.org/sounds/uploaded/WNLIDKJKXT/XC518386-sense%20t%C3%ADtol.mp3',
+      audio: 'https://www.xeno-canto.org/sounds/uploaded/WNLIDKJKXT/XC518386-sense%20t%C3%ADtol.mp3',
     },
   ],
   [
@@ -346,9 +334,8 @@ const birdsDataEn = [
       species: 'Pelecanus',
       description:
         'Pelicans are inhabitants of the seas and rivers. They walk awkwardly, but fly and swim well. They feed mainly on fish, organize collective hunts - lining up in a semicircle, they flap their wings and beaks on the water and force out the frightened fish in shallow water.',
-      image: 'https://live.staticflickr.com/65535/49159147156_dcbbb5c12a.jpg',
-      audio:
-        'https://www.xeno-canto.org/sounds/uploaded/XAMHIHFTZG/XC331138-call1.mp3',
+      image: 'https://live.staticflickr.com/65535/51389260227_9a58a07fc9.jpg',
+      audio: 'https://www.xeno-canto.org/sounds/uploaded/XAMHIHFTZG/XC331138-call1.mp3',
     },
     {
       id: 5,

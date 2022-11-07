@@ -1,0 +1,59 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;700&family=Mulish:wght@400;600&display=swap');
+@import './variables.scss';
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  transition: 0.4s;
+}
+a {
+  text-decoration: none;
+  &:visited,
+  &:hover,
+  &:active {
+    text-decoration: none;
+  }
+}
+footer {
+  height: 50px;
+  width: 100%;
+  position: relative;
+  bottom: 0;
+  background-color: $bg_alt;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 10%;
+  align-items: center;
+  color: $secondary;
+  .author-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+  }
+  a {
+    background-image: url('../icons/github_icon.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: block;
+    width: 25px;
+    height: 25px;
+    filter: $filter_viol-light;
+    &:hover {
+      filter: $filter_yellow;
+    }
+    &:active {
+      transform: scale(0.9);
+    }
+  }
+
+  .rss {
+    height: 25px;
+    width: 69px;
+    background-image: url('../icons/rs_school_js.svg');
+
+    filter: $filter_viol-light;
+  }
+}
