@@ -3,7 +3,7 @@
 $primary: #ffd951;
 $secondary: #8263ff;
 $disabled: #47327e;
-$right: #92b30e;
+$correct: #92b30e;
 $logo_alt: #9c62ff;
 $wrong: #ff5858;
 $light_alt: #fffcdf;
@@ -27,11 +27,34 @@ $size_small: 16px;
   background-color: transparent;
   border: 3px solid $secondary;
   color: $secondary;
-
-  padding: 10px;
+  text-align: center;
+  padding: 8px;
   border-radius: 10px;
   font-family: $f_standart;
-  font-size: 20px;
+  font-size: 16px;
   cursor: pointer;
   position: relative;
+  &:hover:not(.wrong):not(.correct) {
+    border: 3px solid $primary;
+    color: $primary;
+  }
+  &:active:not(.wrong):not(.correct) {
+    border: 3px solid $primary;
+    color: $primary;
+    transform: scale(0.94);
+  }
+  &.wrong {
+    border: 3px solid $wrong;
+    color: $wrong;
+  }
+  &.correct {
+    border: 3px solid $correct;
+    color: $correct;
+  }
+}
+@mixin withBg($url) {
+  background-image: url($url);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }

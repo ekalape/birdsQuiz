@@ -1,6 +1,7 @@
 import '../assets/styles/variables.scss';
 
 import './quiz.scss';
+import '../assets/styles/audio-player.scss';
 import '../assets/styles/header.scss';
 import '../assets/styles/footer.scss';
 
