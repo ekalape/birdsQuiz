@@ -25,17 +25,24 @@ function openMobileMenu() {
 }
 /* ------------------------hamburger end------------------------------- */
 export let lang = 'ru';
+
 /* ------------------------question els------------------------------- */
 export const hiddenBirdImage = document.querySelector('.question-block__image');
 export const hiddenBirdName = document.querySelector('.question-block__name');
 export const hiddenBirdLatin = document.querySelector('.question-block__latin');
-export const hiddenBirdAudio = document.querySelector('.question-audio__audiofile');
+export const hiddenBirdAudio = document.querySelector('.question-block__audio');
 export const answerOptions_block = document.querySelector('.answer-btns-block');
 export const score_block = document.querySelector('.score');
+export const nextBtn = document.querySelector('.next-btn');
+export const nextBtnText = document.querySelector('.next-text');
+export const storylineInd = document.querySelectorAll('.round');
 
 function startNewGame() {
   const game = new Game();
-
   game.startGame();
 }
 startNewGame();
+
+function clearNextBtn() {
+  nextBtn.replaceWith(nextBtn.cloneNode(true));
+}

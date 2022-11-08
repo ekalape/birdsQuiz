@@ -13,7 +13,7 @@ export default class Game {
   maxPointsPerRound;
   currentlyDemonstratedBird = null;
   answerBtns = [];
-
+  defaultImageSrc = '../assets/icons/bird-logo-viol.svg';
   questionPlayer;
   descriptionPlayer;
   constructor() {
@@ -22,13 +22,18 @@ export default class Game {
     this.currentRoundBirds = [];
     this.setQuantity = 6;
     this.maxPointsPerRound = 5;
-    this.currentRound = 2;
+    this.currentRound = 1;
   }
   startGame() {
     this.startRound(this.currentRound);
+    dom.nextBtn.addEventListener('click', this.nextRound.bind(this));
   }
   startRound(roundIndex) {
     this.currentPoints = this.maxPointsPerRound;
+
+    dom.storylineInd.forEach((x) => x.classList.remove('inprogress'));
+    dom.storylineInd[roundIndex - 1].classList.add('inprogress');
+
     for (let i = 0; i < this.setQuantity; i++) {
       const bird = new Bird(roundIndex - 1, i);
       this.currentRoundBirds.push(bird);
@@ -43,10 +48,20 @@ export default class Game {
       document.querySelector('.question-block__audio')
     );
     this.drawBtnsBlock();
+    dom.nextBtn.classList.add('disabled');
 
     //as a result of function we have 6 birds objects shuffled and 1 hiddenbird, and currentPoints = 6
 
     //create 6 blocks: storyline-block, hidden-block, answerBtns-block, description-block, points-block and nextBtn__disable
+  }
+
+  clearField() {
+    dom.answerOptions_block.innerHTML = '';
+    dom.hiddenBirdImage.style.backgroundImage = `url(${this.defaultImageSrc})`;
+    dom.hiddenBirdName.textContent = '******';
+    dom.hiddenBirdLatin.textContent = '';
+    dom.hiddenBirdAudio.innerHTML = '';
+    this.currentRoundBirds = [];
   }
 
   drawBtnsBlock() {
@@ -83,23 +98,41 @@ export default class Game {
   isCorrectAnswer(birdId) {
     return birdId === this.hiddenBird.id;
   }
-  rightAnswer(birdId) {
+  rightAnswer() {
     this.fullPoints += this.currentPoints;
     dom.score_block.textContent = 'Всего: ' + this.fullPoints;
     dom.hiddenBirdImage.style.backgroundImage = `url(${this.hiddenBird.image})`;
     dom.hiddenBirdName.textContent = this.hiddenBird['name_' + dom.lang];
     dom.hiddenBirdLatin.textContent = this.hiddenBird['latinName_' + dom.lang];
+    dom.nextBtn.classList.remove('disabled');
+    if (this.currentRound === 6) dom.nextBtnText.textContent = 'Результаты';
 
-    //+make the btn green
-    // this.pickedBirdDescription(birdId);
-    //updare storyline Block
-    //update fullPoints Block
-    //update question Block - make name and img visible
+    dom.storylineInd[this.currentRound - 1].textContent = this.currentPoints;
+    if (this.currentPoints === 0) {
+      dom.storylineInd[this.currentRound - 1].classList.add('worst-result');
+    }
+    if (this.currentPoints === this.maxPointsPerRound) {
+      dom.storylineInd[this.currentRound - 1].classList.add('perfect-result');
+    }
+
+    //make the btn green +
+    //this.pickedBirdDescription(birdId);
+    //updare storyline Block +
+    //update fullPoints Block +
+    //update question Block - make name and img visible +
     //stop bird audio
     //add correct sound
   }
 
-  wrongAnswer(birdId) {
+  nextRound() {
+    if (this.currentRound < 6) {
+      this.currentRound += 1;
+      this.clearField();
+      this.startRound(this.currentRound);
+    }
+  }
+
+  wrongAnswer() {
     this.currentPoints--;
     //this.pickedBirdDescription(birdId);
     //+make the btn red
