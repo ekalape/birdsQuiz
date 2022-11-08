@@ -1,5 +1,5 @@
-import birdsDataEn from './birds-json-en.js';
-import birdsDataRu from './birds-json-ru.js';
+import birdsDataEn from '../../birds-json-en.js';
+import birdsDataRu from '../../birds-json-ru.js';
 import elGenerator from './elGenerator.js';
 
 export default class Bird {

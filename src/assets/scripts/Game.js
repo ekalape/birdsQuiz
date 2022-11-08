@@ -1,29 +1,49 @@
 import Bird from './Bird.js';
 import elGenerator from './elGenerator.js';
+import { hiddenBirdImage, hiddenBirdName, hiddenBirdLatin, hiddenBirdAudio } from '../../quiz-page/quiz.js';
+import audioPlayer from './question-player.js';
 
 export default class Game {
   fullPoints;
   currentPoints;
+  currentRound;
   currentRoundBirds;
   hiddenBird;
   setQuantity;
   maxPointsPerRound;
   currentlyDemonstratedBird = null;
+
+  questionPlayer;
+  descriptionPlayer;
   constructor() {
     this.fullPoints = 0;
     this.currentPoints = 6;
     this.currentRoundBirds = [];
     this.setQuantity = 6;
     this.maxPointsPerRound = 6;
+    this.currentRound = 1;
   }
-  startRound(roundIndex) {
+  async startGame() {
+    await this.startRound(this.currentRound);
+  }
+  async startRound(roundIndex) {
     this.currentPoints = this.maxPointsPerRound;
     for (let i = 0; i < this.setQuantity; i++) {
       const bird = new Bird(roundIndex - 1, i);
       this.currentRoundBirds.push(bird);
     }
-    this.hiddenBird = this.currentRoundBirds[this.pickHiddenBirdId];
+
+    this.hiddenBird = this.currentRoundBirds[this.pickHiddenBirdId()];
+    console.log(this.currentRound);
     this.shuffleBirds(this.currentRoundBirds);
+
+    this.questionPlayer = new audioPlayer(
+      this.hiddenBird.sound,
+      document.querySelector('.question-block__audio')
+    );
+
+    //as a result of function we have 6 birds objects shuffled and 1 hiddenbird, and currentPoints = 6
+
     //create 6 blocks: storyline-block, hidden-block, answerBtns-block, description-block, points-block and nextBtn__disable
   }
 

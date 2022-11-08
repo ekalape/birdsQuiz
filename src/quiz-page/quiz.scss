@@ -5,7 +5,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  // border: 1px solid red;
+  //border: 1px solid red;
 }
 
 html {
@@ -268,12 +268,14 @@ main {
   @include btn(100%, 60px);
 }
 
-.explanation-phrase {
-  color: $secondary;
-  margin-top: 20px;
-}
-
 .description-block {
   display: grid;
   padding: 10px;
+}
+.empty-blok {
+  justify-items: center;
+}
+.explanation-phrase {
+  color: $secondary;
+  margin-top: 20px;
 }
