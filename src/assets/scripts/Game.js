@@ -1,6 +1,6 @@
 import Bird from './Bird.js';
 import elGenerator from './elGenerator.js';
-import { hiddenBirdImage, hiddenBirdName, hiddenBirdLatin, hiddenBirdAudio } from '../../quiz-page/quiz.js';
+import * as dom from '../../quiz-page/quiz.js';
 import audioPlayer from './question-player.js';
 
 export default class Game {
@@ -12,21 +12,22 @@ export default class Game {
   setQuantity;
   maxPointsPerRound;
   currentlyDemonstratedBird = null;
+  answerBtns = [];
 
   questionPlayer;
   descriptionPlayer;
   constructor() {
     this.fullPoints = 0;
-    this.currentPoints = 6;
+    this.currentPoints = 5;
     this.currentRoundBirds = [];
     this.setQuantity = 6;
-    this.maxPointsPerRound = 6;
-    this.currentRound = 1;
+    this.maxPointsPerRound = 5;
+    this.currentRound = 2;
   }
-  async startGame() {
-    await this.startRound(this.currentRound);
+  startGame() {
+    this.startRound(this.currentRound);
   }
-  async startRound(roundIndex) {
+  startRound(roundIndex) {
     this.currentPoints = this.maxPointsPerRound;
     for (let i = 0; i < this.setQuantity; i++) {
       const bird = new Bird(roundIndex - 1, i);
@@ -41,12 +42,33 @@ export default class Game {
       this.hiddenBird.sound,
       document.querySelector('.question-block__audio')
     );
+    this.drawBtnsBlock();
 
     //as a result of function we have 6 birds objects shuffled and 1 hiddenbird, and currentPoints = 6
 
     //create 6 blocks: storyline-block, hidden-block, answerBtns-block, description-block, points-block and nextBtn__disable
   }
 
+  drawBtnsBlock() {
+    dom.answerOptions_block.innerHTML = '';
+    this.currentRoundBirds.forEach((x) => {
+      const aBtn = elGenerator('button', 'answerBtn', x['name_' + dom.lang]);
+      aBtn.dataset.id = x.id;
+      this.answerBtns.push(aBtn);
+      aBtn.addEventListener('click', this.checkAnswer.bind(this));
+      dom.answerOptions_block.append(aBtn);
+    });
+  }
+  checkAnswer(e) {
+    console.log(e.target);
+    if (this.isCorrectAnswer(+e.target.dataset.id)) {
+      this.rightAnswer();
+      e.target.classList.add('correct');
+    } else {
+      this.wrongAnswer();
+      e.target.classList.add('wrong');
+    }
+  }
   pickHiddenBirdId() {
     return Math.floor(Math.random() * this.setQuantity);
   }
@@ -63,8 +85,13 @@ export default class Game {
   }
   rightAnswer(birdId) {
     this.fullPoints += this.currentPoints;
+    dom.score_block.textContent = 'Всего: ' + this.fullPoints;
+    dom.hiddenBirdImage.style.backgroundImage = `url(${this.hiddenBird.image})`;
+    dom.hiddenBirdName.textContent = this.hiddenBird['name_' + dom.lang];
+    dom.hiddenBirdLatin.textContent = this.hiddenBird['latinName_' + dom.lang];
+
     //+make the btn green
-    this.pickedBirdDescription(birdId);
+    // this.pickedBirdDescription(birdId);
     //updare storyline Block
     //update fullPoints Block
     //update question Block - make name and img visible
@@ -74,7 +101,7 @@ export default class Game {
 
   wrongAnswer(birdId) {
     this.currentPoints--;
-    this.pickedBirdDescription(birdId);
+    //this.pickedBirdDescription(birdId);
     //+make the btn red
     //add wrong sound
   }
@@ -87,7 +114,7 @@ export default class Game {
     }
   }
 
-  pickedBirdDescription(bird, lang) {
+  /*  pickedBirdDescription(bird, lang) {
     //create block with bird description
 
     lang = lang.substring(0, 1).toUpperCase() + lang.substring(1);
@@ -122,5 +149,5 @@ export default class Game {
       //translate writing
     } else {
     }
-  }
+  } */
 }

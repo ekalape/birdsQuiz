@@ -4,12 +4,12 @@ import elGenerator from './elGenerator.js';
 
 export default class Bird {
   id;
-  nameRu;
-  nameEn;
-  latinNameRu;
-  latinNameEn;
-  descriprtionRu;
-  descriptionEn;
+  name_ru;
+  name_en;
+  latinName_ru;
+  latinName_en;
+  descriprtion_ru;
+  description_en;
   image;
   sound;
   btn;
@@ -18,12 +18,12 @@ export default class Bird {
     if (birdsDataEn.length <= outIndex || birdsDataRu.length <= outIndex)
       throw new Error('index of birdData is too big');
     this.id = birdsDataRu[outIndex][insideIndex].id;
-    this.nameRu = birdsDataRu[outIndex][insideIndex].name;
-    this.latinNameRu = birdsDataRu[outIndex][insideIndex].species;
-    this.nameEn = birdsDataEn[outIndex][insideIndex].name;
-    this.latinNameEn = birdsDataEn[outIndex][insideIndex].species;
-    this.descriptionRu = birdsDataRu[outIndex][insideIndex].description;
-    this.descriptionEn = birdsDataEn[outIndex][insideIndex].description;
+    this.name_ru = birdsDataRu[outIndex][insideIndex].name;
+    this.latinName_ru = birdsDataRu[outIndex][insideIndex].species;
+    this.name_en = birdsDataEn[outIndex][insideIndex].name;
+    this.latinName_en = birdsDataEn[outIndex][insideIndex].species;
+    this.description_ru = birdsDataRu[outIndex][insideIndex].description;
+    this.description_en = birdsDataEn[outIndex][insideIndex].description;
     this.image = birdsDataRu[outIndex][insideIndex].image;
     this.sound = birdsDataRu[outIndex][insideIndex].audio;
   }

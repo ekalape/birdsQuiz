@@ -24,12 +24,14 @@ function openMobileMenu() {
   menuMob.classList.toggle('open');
 }
 /* ------------------------hamburger end------------------------------- */
-
+export let lang = 'ru';
 /* ------------------------question els------------------------------- */
 export const hiddenBirdImage = document.querySelector('.question-block__image');
 export const hiddenBirdName = document.querySelector('.question-block__name');
 export const hiddenBirdLatin = document.querySelector('.question-block__latin');
 export const hiddenBirdAudio = document.querySelector('.question-audio__audiofile');
+export const answerOptions_block = document.querySelector('.answer-btns-block');
+export const score_block = document.querySelector('.score');
 
 function startNewGame() {
   const game = new Game();

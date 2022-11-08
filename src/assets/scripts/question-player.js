@@ -54,13 +54,38 @@ export default class audioPlayer {
   }
 
   playerFunctionality() {
-    console.log(this.playBtn);
     this.playBtn.addEventListener('click', () => this.playPause.call(this));
     this.audioFile.addEventListener('timeupdate', (e) => {
       this.curTime = e.target.currentTime;
       this.updateData.call(this);
     });
     this.audioRange.addEventListener('input', (e) => this.changeAudioRangeValue.call(this));
+
+    this.volumeRange.addEventListener('input', (e) => {
+      this.curVolume = e.target.value;
+      this.audioFile.volume = this.curVolume / 10;
+      if (this.curVolume == 0) {
+        this.volumeUp = false;
+        this.volumeBtn.src = '../assets/icons/volume-mute.png';
+      } else {
+        this.volumeUp = true;
+        this.volumeBtn.src = '../assets/icons/volume-up.png';
+      }
+    });
+
+    this.volumeBtn.addEventListener('click', (e) => {
+      if (this.volumeUp) {
+        this.volumeUp = false;
+        this.audioFile.volume = 0;
+        this.volumeRange.value = 0;
+        this.volumeBtn.src = '../assets/icons/volume-mute.png';
+      } else {
+        this.volumeUp = true;
+        this.audioFilevolume = this.curVolume == 0 ? 1 : this.curVolume / 10;
+        this.volumeRange.value = this.curVolume;
+        this.volumeBtn.src = '../assets/icons/volume-up.png';
+      }
+    });
   }
 
   playPause() {
@@ -79,8 +104,6 @@ export default class audioPlayer {
     }
   }
   changeAudioRangeValue(e) {
-    console.log(this.audioRange.value);
-    console.log(this.curTime);
     this.curTime = +this.audioRange.value;
     this.audioFile.currentTime = (this.curTime * this.audioDuration) / 100;
     this.infoTime.textContent = `${this.curTime.toFixed(1)} / ${this.audioDuration.toFixed(1)}`;
