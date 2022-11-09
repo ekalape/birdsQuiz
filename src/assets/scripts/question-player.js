@@ -10,7 +10,7 @@ export default class audioPlayer {
     this.audioFile.src = this.src;
     this.audioFile.addEventListener('loadedmetadata', () => {
       this.audioDuration = this.audioFile.duration;
-      console.log(this.audioFile);
+      //console.log(this.audioFile);
       this.started = false;
       this.curTime = 0;
       this.volumeUp = true;
@@ -81,7 +81,7 @@ export default class audioPlayer {
         this.volumeBtn.src = '../assets/icons/volume-mute.png';
       } else {
         this.volumeUp = true;
-        this.audioFilevolume = this.curVolume == 0 ? 1 : this.curVolume / 10;
+        this.audioFile.volume = this.curVolume == 0 ? 1 : this.curVolume / 10;
         this.volumeRange.value = this.curVolume;
         this.volumeBtn.src = '../assets/icons/volume-up.png';
       }

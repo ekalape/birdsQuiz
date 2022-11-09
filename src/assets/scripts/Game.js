@@ -3,6 +3,8 @@ import elGenerator from './elGenerator.js';
 import * as dom from '../../quiz-page/quiz.js';
 import audioPlayer from './question-player.js';
 
+import interfaceText from '../../interface-text.js';
+
 export default class Game {
   fullPoints;
   currentPoints;
@@ -12,10 +14,13 @@ export default class Game {
   setQuantity;
   maxPointsPerRound;
   currentlyDemonstratedBird = null;
-  answerBtns = [];
+
   defaultImageSrc = '../assets/icons/bird-logo-viol.svg';
   questionPlayer;
   descriptionPlayer;
+
+  descriptionNodes = null;
+
   constructor() {
     this.fullPoints = 0;
     this.currentPoints = 5;
@@ -24,6 +29,7 @@ export default class Game {
     this.maxPointsPerRound = 5;
     this.currentRound = 1;
   }
+
   startGame() {
     this.startRound(this.currentRound);
     dom.nextBtn.addEventListener('click', this.nextRound.bind(this));
@@ -69,7 +75,7 @@ export default class Game {
     this.currentRoundBirds.forEach((x) => {
       const aBtn = elGenerator('button', 'answerBtn', x['name_' + dom.lang]);
       aBtn.dataset.id = x.id;
-      this.answerBtns.push(aBtn);
+
       aBtn.addEventListener('click', this.checkAnswer.bind(this));
       dom.answerOptions_block.append(aBtn);
     });
@@ -80,7 +86,7 @@ export default class Game {
       this.rightAnswer();
       e.target.classList.add('correct');
     } else {
-      this.wrongAnswer();
+      this.wrongAnswer(e.target);
       e.target.classList.add('wrong');
     }
   }
@@ -100,12 +106,14 @@ export default class Game {
   }
   rightAnswer() {
     this.fullPoints += this.currentPoints;
-    dom.score_block.textContent = 'Всего: ' + this.fullPoints;
+    dom.score_block.textContent = this.fullPoints;
     dom.hiddenBirdImage.style.backgroundImage = `url(${this.hiddenBird.image})`;
     dom.hiddenBirdName.textContent = this.hiddenBird['name_' + dom.lang];
     dom.hiddenBirdLatin.textContent = this.hiddenBird['latinName_' + dom.lang];
     dom.nextBtn.classList.remove('disabled');
-    if (this.currentRound === 6) dom.nextBtnText.textContent = 'Результаты';
+    if (this.questionPlayer.started) this.questionPlayer.playPause();
+
+    if (this.currentRound === 6) dom.nextBtnText.textContent = interfaceText['results_' + dom.lang];
 
     dom.storylineInd[this.currentRound - 1].textContent = this.currentPoints;
     if (this.currentPoints === 0) {
@@ -114,6 +122,7 @@ export default class Game {
     if (this.currentPoints === this.maxPointsPerRound) {
       dom.storylineInd[this.currentRound - 1].classList.add('perfect-result');
     }
+    this.drawDescriptionBlock(this.hiddenBird);
 
     //make the btn green +
     //this.pickedBirdDescription(birdId);
@@ -132,55 +141,53 @@ export default class Game {
     }
   }
 
-  wrongAnswer() {
+  wrongAnswer(t) {
     this.currentPoints--;
+
+    this.drawDescriptionBlock(this.currentRoundBirds.filter((b) => b.id === +t.dataset.id)[0]);
+
     //this.pickedBirdDescription(birdId);
     //+make the btn red
     //add wrong sound
   }
-
-  drawDescriptionBlock(lang) {
-    if (this.currentlyDemonstratedBird === null) {
-      //draw empty block
-    } else {
-      //draw pickedBirdDescription
-    }
+  changeBtnsLanguage() {
+    [...dom.answerOptions_block.children].forEach(
+      (x) =>
+        (x.textContent = this.currentRoundBirds.filter((b) => b.id === +x.dataset.id)[0]['name_' + dom.lang])
+    );
   }
 
-  /*  pickedBirdDescription(bird, lang) {
-    //create block with bird description
+  drawDescriptionBlock(bird) {
+    console.log(bird);
+    const d_image = elGenerator('div', 'description-block__image');
+    d_image.style.backgroundImage = `url(${bird.image})`;
+    const d_fullname = elGenerator('div', 'description-block__name');
+    const d_name = elGenerator('span', 'b-name__common', bird['name_' + dom.lang]);
+    const d_latin = elGenerator('span', 'b-name__latin', bird['latinName_' + dom.lang]);
+    d_fullname.append(d_name, d_latin);
+    const aContainer = elGenerator('div', 'description-block__audio');
+    this.descriptionPlayer = new audioPlayer(bird.sound, aContainer);
+    const d_description = elGenerator(
+      'div',
+      'description-block__description',
+      bird['description_' + dom.lang]
+    );
+    console.log(dom.description_block);
+    this.descriptionNodes = {
+      name: d_name,
+      latin: d_latin,
+      descr: d_description,
+      bird: bird,
+    };
 
-    lang = lang.substring(0, 1).toUpperCase() + lang.substring(1);
-
-    return `<div class="description-block__image" style="background-image: url('${bird.image}')"></div> 
-    <div class="description-block__name">
-        <span class="b-name__common">${bird['name' + lang]}</span>
-        <span class="b-name__latin">${bird['latinName' + lang]}</span>
-    </div>
-    
-    <div class="description-block__audio audio-block">
-        <audio src=${bird.sound} class="description-sound"></audio>
-        <img class="play-pause" src="./assets/icons/play-black.svg" alt="play audio">
-        <span class="sound-range__wrapper">
-    
-            <input type="range" class="audio-block__sound sound-range" min="0" max="100" value="0"><span class="thumb"></span></span>
-    
-        <div class="sound-info">
-            <span class="sound-info__time"></span>
-            <img class="sound-info__on-off" src="./assets/icons/volume-up.png" alt="volume button">
-        </div>
-        <span class="volume-range__wrapper">
-    
-            <input type="range" class="audio-block__volume sound-range" min="0" max="10" value="5">
-            <span class="thumb-volume"></span></span>
-    </div>
-    <div class="description-block__description">${bird['description' + lang]}</div>`;
+    dom.description_block.classList.remove('empty-block');
+    dom.description_block.innerHTML = '';
+    dom.description_block.append(d_image, d_fullname, aContainer, d_description);
   }
-
-  changeLangDescriptionBlock(lang) {
-    if (this.currentlyDemonstratedBird === null) {
-      //translate writing
-    } else {
-    }
-  } */
+  translateDescriptionBlock() {
+    if (!this.descriptionNodes) return;
+    this.descriptionNodes.name.textContent = this.descriptionNodes.bird['name_' + dom.lang];
+    this.descriptionNodes.latin.textContent = this.descriptionNodes.bird['latinName_' + dom.lang];
+    this.descriptionNodes.descr.textContent = this.descriptionNodes.bird['description_' + dom.lang];
+  }
 }

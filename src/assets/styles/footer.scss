@@ -18,8 +18,10 @@ a {
 footer {
   height: 50px;
   width: 100%;
-  position: relative;
+  position: absolute;
+  z-index: 7;
   bottom: 0;
+  left: 0;
   background-color: $bg_alt;
   display: flex;
   justify-content: space-between;

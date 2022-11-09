@@ -28,12 +28,6 @@ export default class Bird {
     this.sound = birdsDataRu[outIndex][insideIndex].audio;
   }
   drawDescriptionBlock() {}
-  drawQuestionBlock() {}
-  drawBirdBtn() {
-    const btn = document.createElement('button');
-    btn.classList.add('answer-option-btn');
-    btn.textContent = this.nameRu;
-  }
-  updateBirdBtn() {}
+
   updateQuestionBlock() {}
 }
