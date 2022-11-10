@@ -25,5 +25,29 @@ const interfaceText = {
 
   hint_ru: 'Послушайте плеер и выберите птицу из списка',
   hint_en: 'Listen to the player and select a bird from the list',
+
+  resVisual_ru: ['Вы набрали', 'из'],
+  resVisual_en: ['You scored', 'out of'],
+
+  playAgain_ru: 'Попробовать',
+  playAgain_en: 'Another try',
+
+  playAgainQuestion_ru: 'Хотите попробовать еще раз?',
+  playAgainQuestion_en: 'Would you like to try again?',
+
+  /*   openResults_ru: 'Результаты',
+  openResults_en: 'Open gallery', */
+
+  start_ru: 'Начать викторину',
+  start_en: 'Start quiz',
+
+  gratsBest_ru: 'Отлично!',
+  gratsBest_en: 'Really great!',
+
+  gratsWorst_ru: 'Не повезло, наверное..',
+  gratsWorst_en: 'Not the lucky one..',
+
+  gratsMed_ru: 'Вы можете лучше!',
+  gratsMed_en: 'You can do better!',
 };
 export default interfaceText;

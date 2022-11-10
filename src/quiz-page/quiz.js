@@ -4,12 +4,14 @@ import './quiz.scss';
 import '../assets/styles/audio-player.scss';
 import '../assets/styles/header.scss';
 import '../assets/styles/footer.scss';
+import '../assets/styles/modals.scss';
 
 import Game from '../assets/scripts/Game.js';
 import Bird from '../assets/scripts/Bird.js';
 import elGenerator from '../assets/scripts/elGenerator.js';
 import audioPlayer from '../assets/scripts/question-player.js';
 import interfaceText from '../interface-text.js';
+import Result from '../assets/scripts/Result.js';
 
 import '../assets/icons/bird-logo-yellow.svg';
 import '../assets/icons/bird-logo-viol.svg';
@@ -46,17 +48,18 @@ export const description_block = document.querySelector('.description-block');
 
 langSwitcher.forEach((x) => x.addEventListener('click', () => interfaceLanguageChange()));
 
-function startNewGame() {
+export function startNewGame() {
   game = new Game();
+  game.clearField();
   game.startGame();
-  game.drawDescriptionBlock(game.hiddenBird);
 }
 //interfaceLanguageChange();
 startNewGame();
 
-function clearNextBtn() {
-  nextBtn.replaceWith(nextBtn.cloneNode(true));
+export function prepareForNewGame() {
+  game = null;
 }
+
 function interfaceLanguageChange() {
   console.log(lang);
   if (lang === 'ru') {

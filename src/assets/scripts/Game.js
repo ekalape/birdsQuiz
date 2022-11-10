@@ -2,6 +2,7 @@ import Bird from './Bird.js';
 import elGenerator from './elGenerator.js';
 import * as dom from '../../quiz-page/quiz.js';
 import audioPlayer from './question-player.js';
+import Result from './Result.js';
 
 import interfaceText from '../../interface-text.js';
 
@@ -14,6 +15,7 @@ export default class Game {
   setQuantity;
   maxPointsPerRound;
   currentlyDemonstratedBird = null;
+  completed;
 
   defaultImageSrc = '../assets/icons/bird-logo-viol.svg';
   questionPlayer;
@@ -28,6 +30,7 @@ export default class Game {
     this.setQuantity = 6;
     this.maxPointsPerRound = 5;
     this.currentRound = 1;
+    this.completed = false;
   }
 
   startGame() {
@@ -68,10 +71,15 @@ export default class Game {
     dom.hiddenBirdLatin.textContent = '';
     dom.hiddenBirdAudio.innerHTML = '';
     this.currentRoundBirds = [];
+    this.currentlyDemonstratedBird = null;
+    dom.description_block.classList.add('empty-block');
+    dom.description_block.innerHTML = '';
+    dom.description_block.append(
+      elGenerator('span', 'explanation-phrase', interfaceText['hint_' + dom.lang])
+    );
   }
 
   drawBtnsBlock() {
-    dom.answerOptions_block.innerHTML = '';
     this.currentRoundBirds.forEach((x) => {
       const aBtn = elGenerator('button', 'answerBtn', x['name_' + dom.lang]);
       aBtn.dataset.id = x.id;
@@ -113,7 +121,10 @@ export default class Game {
     dom.nextBtn.classList.remove('disabled');
     if (this.questionPlayer.started) this.questionPlayer.playPause();
 
-    if (this.currentRound === 6) dom.nextBtnText.textContent = interfaceText['results_' + dom.lang];
+    if (this.currentRound === 6) {
+      dom.nextBtnText.textContent = interfaceText['results_' + dom.lang];
+      this.completed = true;
+    }
 
     dom.storylineInd[this.currentRound - 1].textContent = this.currentPoints;
     if (this.currentPoints === 0) {
@@ -134,10 +145,15 @@ export default class Game {
   }
 
   nextRound() {
-    if (this.currentRound < 6) {
+    if (this.currentRound < 6 && !this.completed) {
       this.currentRound += 1;
       this.clearField();
       this.startRound(this.currentRound);
+    }
+    if (this.completed) {
+      const res = new Result(new Date(), this.fullPoints);
+      document.body.prepend(res.drawResultMessage());
+      //send result to main page for records
     }
   }
 

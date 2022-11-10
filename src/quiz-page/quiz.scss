@@ -85,6 +85,7 @@ main {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 100px auto auto;
+  align-items: start;
   gap: 20px;
   padding: 20px;
   width: 100%;
@@ -192,6 +193,7 @@ main {
 .left-block,
 .right-block {
   margin-top: 20px;
+  align-self: flex-start;
   @media (max-width: 800px) {
     margin-top: 5px;
   }
@@ -200,13 +202,15 @@ main {
 .left-block {
   display: flex;
   flex-direction: column;
+  justify-content: start;
   align-items: center;
-  align-self: center;
+  // align-self: center;
   width: 100%;
 }
 .question-block {
   display: grid;
   grid-template-columns: 1fr 3fr;
+  align-self: flex-start;
 
   @media (max-width: 800px) /* and (min-width: 640px) */ {
     grid-template-columns: 1fr 4fr;
@@ -303,7 +307,8 @@ main {
 }
 .explanation-phrase {
   color: $secondary;
-  margin-top: 20px;
+  margin: 20px 10px 0 10px;
+  text-align: center;
 }
 
 .description-block__image {
