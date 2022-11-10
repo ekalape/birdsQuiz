@@ -5,6 +5,8 @@ import '../assets/icons/bird-logo-yellow.svg';
 import '../assets/icons/bird-logo-viol.svg';
 
 import elGenerator from '../assets/scripts/elGenerator.js';
+import getSettings from '../assets/scripts/get-settings.js';
+import interfaceText from '../interface-text.js';
 
 getImgs();
 const cont = document.querySelector('.wrapper');
@@ -78,9 +80,11 @@ setTimeout(() => {
 }, 1500);
 
 function addInvite() {
+  const lang = getSettings().language;
+
   const inviteWr = elGenerator('div', 'invite');
-  const startQuiz = elGenerator('a', ['btn', 'startQuiz-btn'], 'Начать викторину');
-  const openGallery = elGenerator('a', ['btn', 'openGal-btn'], 'Открыть галерею');
+  const startQuiz = elGenerator('a', ['btn', 'startQuiz-btn'], interfaceText['start_' + lang]);
+  const openGallery = elGenerator('a', ['btn', 'openGal-btn'], interfaceText['openGallery_' + lang]);
 
   startQuiz.href = '../quiz-page/quiz.html';
   openGallery.href = '../gallery-page/birds-gallery.html';

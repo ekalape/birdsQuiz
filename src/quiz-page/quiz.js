@@ -12,10 +12,19 @@ import elGenerator from '../assets/scripts/elGenerator.js';
 import audioPlayer from '../assets/scripts/question-player.js';
 import interfaceText from '../interface-text.js';
 import Result from '../assets/scripts/Result.js';
+import getSettings from '../assets/scripts/get-settings.js';
+//import saveSettings from '../assets/scripts/save-settings.js';
 
 import '../assets/icons/bird-logo-yellow.svg';
 import '../assets/icons/bird-logo-viol.svg';
 import '../assets/icons/rs_school_js.svg';
+import '../assets/icons/play-black.svg';
+import '../assets/icons/pause-black.svg';
+import '../assets/icons/corona.png';
+import '../assets/icons/dobbleNext.png';
+import '../assets/icons/premio2.png';
+import '../assets/icons/volume-mute.png';
+import '../assets/icons/volume-up.png';
 
 const menuItems = document.querySelectorAll('.menu__item');
 const explanationPhrase = document.querySelector('.explanation-phrase');
@@ -31,7 +40,7 @@ function openMobileMenu() {
   menuMob.classList.toggle('open');
 }
 /* ------------------------hamburger end------------------------------- */
-export let lang = 'ru';
+export let lang /*  = 'ru' */;
 let game = null;
 
 /* ------------------------question els------------------------------- */
@@ -41,12 +50,16 @@ export const hiddenBirdLatin = document.querySelector('.question-block__latin');
 export const hiddenBirdAudio = document.querySelector('.question-block__audio');
 export const answerOptions_block = document.querySelector('.answer-btns-block');
 export const score_block = document.querySelector('.score-value');
+/* score_block.textContent = interfaceText['score_' + lang] + '0'; */
 export const nextBtn = document.querySelector('.next-btn');
 export const nextBtnText = document.querySelector('.next-text');
+nextBtnText.textContent = interfaceText['next_' + lang];
 export const storylineInd = document.querySelectorAll('.round');
 export const description_block = document.querySelector('.description-block');
 
 langSwitcher.forEach((x) => x.addEventListener('click', () => interfaceLanguageChange()));
+
+window.addEventListener('load', useSavedSettings);
 
 export function startNewGame() {
   game = new Game();
@@ -61,7 +74,7 @@ export function prepareForNewGame() {
 }
 
 function interfaceLanguageChange() {
-  console.log(lang);
+  console.log('inside change lang function', lang);
   if (lang === 'ru') {
     lang = 'en';
     langSwitcher.forEach((x) => (x.textContent = 'RU'));
@@ -86,3 +99,18 @@ function interfaceLanguageChange() {
   }
   if (hiddenBirdName.textContent !== '******') hiddenBirdName.textContent = game.hiddenBird['name_' + lang];
 }
+function saveSettings() {
+  alert('saving');
+  localStorage.setItem('eklp_brdsqz_settings', JSON.stringify({ language: lang, theme: null }));
+}
+function useSavedSettings() {
+  const settings = getSettings();
+  console.log(settings.language);
+  if (settings.language) {
+    if (settings.language === 'ru') lang = 'en';
+    else lang = 'ru';
+
+    interfaceLanguageChange();
+  }
+}
+window.addEventListener('beforeunload', saveSettings);

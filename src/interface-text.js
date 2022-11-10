@@ -35,8 +35,8 @@ const interfaceText = {
   playAgainQuestion_ru: 'Хотите попробовать еще раз?',
   playAgainQuestion_en: 'Would you like to try again?',
 
-  /*   openResults_ru: 'Результаты',
-  openResults_en: 'Open gallery', */
+  openGallery_ru: 'Открыть галерею',
+  openGallery_en: 'Open gallery',
 
   start_ru: 'Начать викторину',
   start_en: 'Start quiz',
