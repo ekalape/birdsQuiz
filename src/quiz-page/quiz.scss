@@ -36,7 +36,7 @@ body {
 }
 main {
   width: 100%;
-  min-height: 100vh;
+  min-height: calc(100vh - 70px);
   /*  height: calc(100vh - 70px); */
   display: flex;
   flex-direction: column;
@@ -50,6 +50,7 @@ main {
 
   text-align: center;
   font-size: 20px;
+  transition: 0.2s;
 
   &:hover .next-text::after {
     filter: $filter_yellow;
@@ -65,6 +66,10 @@ main {
 }
 .next-text {
   position: relative;
+  transition: 0s;
+  &:hover {
+    color: $primary;
+  }
   &::after {
     content: '';
     display: block;
@@ -74,6 +79,7 @@ main {
     background-size: cover;
     background-position: center;
     filter: $filter_viol-light;
+    transition: 0.4s;
     position: absolute;
     top: 1px;
     right: -30px;

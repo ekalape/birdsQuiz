@@ -61,6 +61,12 @@ langSwitcher.forEach((x) => x.addEventListener('click', () => interfaceLanguageC
 window.addEventListener('load', useSavedSettings);
 
 export function startNewGame() {
+  storylineInd.forEach((x) => {
+    x.textContent = '?';
+    x.classList.remove('perfect-result');
+    x.classList.remove('worst-result');
+  });
+
   game = new Game();
   game.clearField();
   game.startGame();

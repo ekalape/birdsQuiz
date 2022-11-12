@@ -73,6 +73,7 @@ export default class Game {
     this.currentRoundBirds = [];
     this.currentlyDemonstratedBird = null;
     dom.description_block.classList.add('empty-block');
+
     dom.description_block.innerHTML = '';
     dom.description_block.append(
       elGenerator('span', 'explanation-phrase', interfaceText['hint_' + dom.lang])
@@ -151,9 +152,9 @@ export default class Game {
       this.startRound(this.currentRound);
     }
     if (this.completed) {
-      const res = new Result(new Date(), this.fullPoints);
+      const res = new Result(new Date(), this.fullPoints, dom.lang);
 
-      document.body.prepend(res.drawResultMessage());
+      document.body.prepend(this.drawResultMessage(res));
       //send result to main page for records
     }
   }
@@ -206,5 +207,46 @@ export default class Game {
     this.descriptionNodes.name.textContent = this.descriptionNodes.bird['name_' + dom.lang];
     this.descriptionNodes.latin.textContent = this.descriptionNodes.bird['latinName_' + dom.lang];
     this.descriptionNodes.descr.textContent = this.descriptionNodes.bird['description_' + dom.lang];
+  }
+  drawResultMessage(res) {
+    const bgWrapper = elGenerator('div', 'modal-wrapper');
+    // bgWrapper.addEventListener('click', () => bgWrapper.remove());
+    const messageContainer = elGenerator('div', 'message-container');
+    const image = elGenerator('img', 'message-image');
+    image.src = '../assets/icons/corona.png';
+
+    const title = elGenerator('h2', 'message-title', res.grats);
+    const message = elGenerator(
+      'p',
+      'message-body',
+      `${interfaceText['resVisual_' + dom.lang][0]} ${res.score} ${
+        interfaceText['resVisual_' + dom.lang][1]
+      } 30.`
+    );
+    const messageQuestion = elGenerator('p', 'message-body', interfaceText['playAgainQuestion_' + dom.lang]);
+
+    const btnsWrapper = elGenerator('div', 'messageBtns-wrapper');
+    const tryAgain = elGenerator(
+      'button',
+      'answer-btn activeAnswer-btn',
+      interfaceText['playAgain_' + dom.lang]
+    );
+    const openRes = elGenerator('button', 'answer-btn', interfaceText['results_' + dom.lang]);
+
+    tryAgain.addEventListener('click', (e) => {
+      bgWrapper.remove();
+      dom.startNewGame();
+    });
+    openRes.addEventListener('click', () => {
+      bgWrapper.remove();
+      window.location.href = '../../results-page/results.html';
+      console.log('open results page');
+      //open results page
+    });
+
+    btnsWrapper.append(tryAgain, openRes);
+    messageContainer.append(image, title, message, messageQuestion, btnsWrapper);
+    bgWrapper.append(messageContainer);
+    return bgWrapper;
   }
 }

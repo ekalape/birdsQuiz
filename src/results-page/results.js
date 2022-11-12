@@ -16,7 +16,7 @@ import '../assets/icons/moon.png';
 import interfaceText from '../interface-text.js';
 import getSettings from '../assets/scripts/get-settings.js';
 import elGenerator from '../assets/scripts/elGenerator.js';
-/* import Result from '../assets/scripts/Result.js'; */
+import Result from '../assets/scripts/Result.js';
 
 /* ------------------------hamburger start------------------------------- */
 const hamburger = document.querySelector('.hamburger');

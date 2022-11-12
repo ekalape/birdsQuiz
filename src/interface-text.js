@@ -26,7 +26,7 @@ const interfaceText = {
   hint_ru: 'Послушайте плеер и выберите птицу из списка',
   hint_en: 'Listen to the player and select a bird from the list',
 
-  resVisual_ru: ['Вы набрали', 'из'],
+  resVisual_ru: ['Ваш счет', 'из'],
   resVisual_en: ['You scored', 'out of'],
 
   playAgain_ru: 'Попробовать',
@@ -44,10 +44,10 @@ const interfaceText = {
   gratsBest_ru: 'Отлично!',
   gratsBest_en: 'Really great!',
 
-  gratsWorst_ru: 'Не повезло, наверное..',
-  gratsWorst_en: 'Not the lucky one..',
+  gratsWorst_ru: 'Вы можете лучше!',
+  gratsWorst_en: 'You can go better!',
 
-  gratsMed_ru: 'Вы можете лучше!',
-  gratsMed_en: 'You can do better!',
+  gratsMed_ru: 'Очень неплохо!',
+  gratsMed_en: 'Not so bad!',
 };
 export default interfaceText;
