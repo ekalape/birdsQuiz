@@ -105,7 +105,6 @@ function interfaceLanguageChange() {
   if (hiddenBirdName.textContent !== '******') hiddenBirdName.textContent = game.hiddenBird['name_' + lang];
 }
 function saveSettings() {
-  alert('saving');
   localStorage.setItem('eklp_brdsqz_settings', JSON.stringify({ language: lang, theme: null }));
 }
 function useSavedSettings() {
@@ -117,5 +116,14 @@ function useSavedSettings() {
 
     interfaceLanguageChange();
   }
+}
+export function saveRecords(res) {
+  let arr = [];
+  if (localStorage.getItem('eklp_brdsqz_records')) {
+    arr = JSON.parse(localStorage.getItem('eklp_brdsqz_records'));
+  }
+  console.log(arr);
+  arr.push(res);
+  localStorage.setItem('eklp_brdsqz_records', JSON.stringify(arr));
 }
 window.addEventListener('beforeunload', saveSettings);

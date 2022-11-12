@@ -6,24 +6,25 @@ import interfaceText from '../../interface-text.js';
 export default class Result {
   grats;
   constructor(date, score, lang) {
-    this.date = date;
+    this.date = `${date.getDate()}.${date.getMonth() + 1}.${date.getFullYear()}`;
     this.score = score;
-    this.lang = lang;
-    this.grats = this.setGrats();
+
+    this.visualization = {
+      en: this.visualize('en'),
+      ru: this.visualize('ru'),
+    };
   }
-  visualize() {
-    return `${this.date} ${interfaceText['resVisual_' + this.lang][0]} ${this.score} ${
-      interfaceText['resVisual_' + this.lang][1]
-    } 30. ${this.grats}`;
+  visualize(lang) {
+    return `${this.date} ${interfaceText['resVisualRecord_' + lang][0]} ${this.score} ${
+      interfaceText['resVisualRecord_' + lang][1]
+    } 30. ${this.setGrats(lang)}`;
   }
-  setLang(lang) {
-    this.lang = lang;
-  }
-  setGrats() {
+
+  setGrats(lang) {
     return this.score === 30
-      ? interfaceText['gratsBest_' + this.lang]
+      ? interfaceText['gratsBest_' + lang]
       : this.score >= 0 && this.score <= 5
-      ? interfaceText['gratsWorst_' + this.lang]
-      : interfaceText['gratsMed_' + this.lang];
+      ? interfaceText['gratsWorst_' + lang]
+      : interfaceText['gratsMed_' + lang];
   }
 }

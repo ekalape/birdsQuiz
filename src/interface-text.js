@@ -29,6 +29,9 @@ const interfaceText = {
   resVisual_ru: ['Ваш счет', 'из'],
   resVisual_en: ['You scored', 'out of'],
 
+  resVisualRecord_ru: ['вы набрали', 'из'],
+  resVisualRecord_en: ['you scored', 'out of'],
+
   playAgain_ru: 'Попробовать',
   playAgain_en: 'Another try',
 
@@ -49,5 +52,12 @@ const interfaceText = {
 
   gratsMed_ru: 'Очень неплохо!',
   gratsMed_en: 'Not so bad!',
+
+  lastRecordsTitle_ru: 'Последние результаты',
+  lastRecordsTitle_en: 'The last records',
+
+  noDataYet_ru: 'Пока ничего нет',
+  noDataYet_en: 'No data yet',
 };
+
 export default interfaceText;

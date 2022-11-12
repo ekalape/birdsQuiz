@@ -155,6 +155,7 @@ export default class Game {
       const res = new Result(new Date(), this.fullPoints, dom.lang);
 
       document.body.prepend(this.drawResultMessage(res));
+      dom.saveRecords(res);
       //send result to main page for records
     }
   }
@@ -210,7 +211,7 @@ export default class Game {
   }
   drawResultMessage(res) {
     const bgWrapper = elGenerator('div', 'modal-wrapper');
-    // bgWrapper.addEventListener('click', () => bgWrapper.remove());
+
     const messageContainer = elGenerator('div', 'message-container');
     const image = elGenerator('img', 'message-image');
     image.src = '../assets/icons/corona.png';
@@ -240,8 +241,6 @@ export default class Game {
     openRes.addEventListener('click', () => {
       bgWrapper.remove();
       window.location.href = '../../results-page/results.html';
-      console.log('open results page');
-      //open results page
     });
 
     btnsWrapper.append(tryAgain, openRes);

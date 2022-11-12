@@ -34,7 +34,7 @@ body {
 }
 main {
   width: 100%;
-  min-height: 100vh;
+  min-height: calc(100vh - 70px);
   /*  height: calc(100vh - 70px); */
   display: flex;
   flex-direction: column;
@@ -52,4 +52,23 @@ main {
 }
 .title {
   font-size: 1.4rem;
+  margin-bottom: 30px;
+}
+
+.records-line {
+  list-style-type: none;
+  margin-top: 10px;
+  position: relative;
+  color: $secondary;
+  &::before {
+    content: '';
+    display: block;
+    width: 22px;
+    height: 22px;
+    @include withBg('../assets/icons/premio2.png');
+    filter: $filter_yellow;
+    position: relative;
+    top: 25px;
+    left: -23px;
+  }
 }

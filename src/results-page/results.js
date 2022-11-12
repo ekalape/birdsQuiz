@@ -31,14 +31,16 @@ function openMobileMenu() {
 /* ------------------------hamburger end------------------------------- */
 const langSwitcher = document.querySelectorAll('.lang-switcher');
 
-let lang = 'ru';
+let lang;
 window.addEventListener('load', useSettings);
 
 langSwitcher.forEach((x) => x.addEventListener('click', () => changeLanguage()));
 
 function useSettings() {
   const settings = getSettings();
-  lang = settings.language;
+  lang = settings.language === 'en' ? 'ru' : 'en';
+  console.log('inside results', lang);
+  changeLanguage();
 }
 function changeLanguage() {
   if (lang === 'ru') {
@@ -54,4 +56,29 @@ function changeLanguage() {
     .querySelectorAll('.item-gallery')
     .forEach((x) => (x.textContent = interfaceText['gallery_' + lang]));
   document.querySelectorAll('.item-res').forEach((x) => (x.textContent = interfaceText['results_' + lang]));
+  document.querySelector('.title').textContent = interfaceText['lastRecordsTitle_' + lang];
+  drawTable();
+}
+
+function drawTable() {
+  if (document.querySelector('.records-list')) document.querySelector('.records-list').remove();
+  const outer = elGenerator('ul', 'records-list');
+  if (localStorage.getItem('eklp_brdsqz_records')) {
+    const data = JSON.parse(localStorage.getItem('eklp_brdsqz_records'));
+    data.forEach((x) => {
+      console.log(x.visualization);
+      console.log(lang);
+      const dataLine = elGenerator('li', 'records-line', x.visualization[lang]);
+      outer.append(dataLine);
+    });
+  } else {
+    const dataLine = elGenerator('li', 'records-line', interfaceText['noDataYet_' + lang]);
+    outer.append(dataLine);
+  }
+  document.querySelector('.title').after(outer);
+}
+
+window.addEventListener('beforeunload', saveSettings);
+function saveSettings() {
+  localStorage.setItem('eklp_brdsqz_settings', JSON.stringify({ language: lang, theme: null }));
 }
