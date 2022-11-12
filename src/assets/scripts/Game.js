@@ -152,6 +152,7 @@ export default class Game {
     }
     if (this.completed) {
       const res = new Result(new Date(), this.fullPoints);
+
       document.body.prepend(res.drawResultMessage());
       //send result to main page for records
     }

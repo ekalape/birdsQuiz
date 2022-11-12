@@ -26,7 +26,6 @@ import '../assets/icons/premio2.png';
 import '../assets/icons/volume-mute.png';
 import '../assets/icons/volume-up.png';
 
-const menuItems = document.querySelectorAll('.menu__item');
 const explanationPhrase = document.querySelector('.explanation-phrase');
 const langSwitcher = document.querySelectorAll('.lang-switcher');
 /* ------------------------hamburger start------------------------------- */
