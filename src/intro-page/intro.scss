@@ -17,18 +17,27 @@ body {
   position: absolute;
   top: 47%;
   left: 47%;
-  transform: translate(-50%, -50%) scale(1.9);
+  transform: translate(-50%, -50%) scale(1.5);
   z-index: 8;
   display: flex;
   align-items: center;
   cursor: default;
   animation: logoMove 1.2s forwards;
   animation-delay: 1.2s;
+  @media (max-width: 540px) {
+    transform: translate(-50%, -50%) scale(1.2);
+  }
+  @media (max-width: 420px) {
+    transform: translate(-50%, -50%) scale(1);
+  }
   h2 {
     font-size: 80px;
     font-family: $f_songbird;
     position: relative;
     text-shadow: 1px 1px 5px black;
+    @media (max-width: 800px) {
+      font-size: 64px;
+    }
   }
   h2:first-of-type {
     color: $primary;
@@ -44,19 +53,50 @@ body {
     position: relative;
     left: 20px;
     filter: drop-shadow(1px 1px 5px black);
+    @media (max-width: 800px) {
+      height: 120px;
+      left: 14px;
+    }
   }
 }
-
 @keyframes logoMove {
   from {
     top: 47%;
     left: 47%;
-    transform: translate(-50%, -50%) scale(1.9);
+    transform: translate(-50%, -50%) scale(1.5);
   }
   to {
     top: 20px;
     left: 20px;
-    transform: translate(0, 0) scale(0.9);
+    transform: translate(0, 0) scale(0.8);
+  }
+}
+@media (max-width: 540px) {
+  @keyframes logoMove {
+    from {
+      top: 47%;
+      left: 47%;
+      transform: translate(-50%, -50%) scale(1.2);
+    }
+    to {
+      top: 20px;
+      left: 20px;
+      transform: translate(0, 0) scale(0.8);
+    }
+  }
+}
+@media (max-width: 420px) {
+  @keyframes logoMove {
+    from {
+      top: 47%;
+      left: 47%;
+      transform: translate(-50%, -50%) scale(1);
+    }
+    to {
+      top: 20px;
+      left: 10px;
+      transform: translate(0, 0) scale(0.8);
+    }
   }
 }
 
