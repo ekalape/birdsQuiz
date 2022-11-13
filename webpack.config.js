@@ -39,6 +39,7 @@ module.exports = ({ develop }) => ({
     'intro-page/intro': path.resolve(__dirname, 'src/intro-page/intro.js'),
     'quiz-page/quiz': './src/quiz-page/quiz.js',
     'results-page/results': './src/results-page/results.js',
+    'gallery-page/gallery': './src/gallery-page/gallery.js',
   },
 
   output: {
@@ -97,6 +98,14 @@ module.exports = ({ develop }) => ({
       template: path.resolve(__dirname, 'src/results-page/results.html'),
 
       chunks: ['results-page/results'],
+      favicon: './src/assets/icons/flavicon.png',
+    }),
+    new HtmlWebpackPlugin({
+      filename: 'gallery-page/gallery.html',
+      title: 'SongBird gallery',
+      template: path.resolve(__dirname, 'src/gallery-page/gallery.html'),
+
+      chunks: ['gallery-page/gallery'],
       favicon: './src/assets/icons/flavicon.png',
     }),
     new CleanWebpackPlugin(),

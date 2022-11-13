@@ -12,7 +12,6 @@ export default class Bird {
   description_en;
   image;
   sound;
-  btn;
 
   constructor(outIndex, insideIndex) {
     if (birdsDataEn.length <= outIndex || birdsDataRu.length <= outIndex)
