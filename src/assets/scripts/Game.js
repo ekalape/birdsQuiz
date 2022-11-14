@@ -16,7 +16,7 @@ export default class Game {
   maxPointsPerRound;
   currentlyDemonstratedBird = null;
   completed;
-
+  answered;
   defaultImageSrc = '../assets/icons/bird-logo-viol.svg';
   questionPlayer;
   descriptionPlayer;
@@ -31,6 +31,7 @@ export default class Game {
     this.maxPointsPerRound = 5;
     this.currentRound = 1;
     this.completed = false;
+    this.answered = false;
   }
 
   startGame() {
@@ -71,6 +72,7 @@ export default class Game {
     dom.hiddenBirdLatin.textContent = '';
     dom.hiddenBirdAudio.innerHTML = '';
     this.currentRoundBirds = [];
+    this.answered = false;
     this.currentlyDemonstratedBird = null;
     dom.description_block.classList.add('empty-block');
 
@@ -96,7 +98,7 @@ export default class Game {
       e.target.classList.add('correct');
     } else {
       this.wrongAnswer(e.target);
-      e.target.classList.add('wrong');
+      if (!this.answered) e.target.classList.add('wrong');
     }
   }
   pickHiddenBirdId() {
@@ -120,10 +122,11 @@ export default class Game {
     dom.hiddenBirdName.textContent = this.hiddenBird['name_' + dom.lang];
     dom.hiddenBirdLatin.textContent = this.hiddenBird['latinName_' + dom.lang];
     dom.nextBtn.classList.remove('disabled');
+    this.answered = true;
     if (this.questionPlayer.started) this.questionPlayer.playPause();
 
     if (this.currentRound === 6) {
-      dom.nextBtnText.textContent = interfaceText['results_' + dom.lang];
+      dom.nextBtnText.textContent = interfaceText['btnResults_' + dom.lang];
       this.completed = true;
     }
 

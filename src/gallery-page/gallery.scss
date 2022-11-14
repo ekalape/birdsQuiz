@@ -39,5 +39,10 @@ main {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-bottom: 80px;
+  padding: 40px 8% 80px 8%;
+  //padding-bottom: 80px;
+}
+.gallery-wrapper {
+  width: 100%;
+  border: 1px solid red;
 }

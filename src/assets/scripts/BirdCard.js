@@ -7,5 +7,7 @@ export default class BirdCard {
     this.bird = bird;
     this.audioPlayer = new audioPlayer(this.bird.sound);
   }
-  drawCard(lang) {}
+  drawCard(lang) {
+    const cont = elGenerator('div', 'card-container');
+  }
 }

@@ -8,8 +8,11 @@ const interfaceText = {
   gallery_ru: 'Галерея',
   gallery_en: 'Gallery',
 
-  results_ru: 'Результаты',
-  results_en: 'Results',
+  results_ru: 'Рекорды',
+  results_en: 'Records',
+
+  btnResults_ru: 'Результаты',
+  btnResults_en: 'Results',
 
   score_ru: 'Всего: ',
   score_en: 'Score: ',
