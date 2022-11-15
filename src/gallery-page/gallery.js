@@ -11,6 +11,8 @@ import '../assets/icons/rs_school_js.svg';
 import interfaceText from '../interface-text.js';
 import getSettings from '../assets/scripts/get-settings.js';
 import elGenerator from '../assets/scripts/elGenerator.js';
+import Bird from '../assets/scripts/Bird.js';
+import BirdCard from '../assets/scripts/BirdCard.js';
 
 /* ------------------------hamburger start------------------------------- */
 const hamburger = document.querySelector('.hamburger');
@@ -25,8 +27,14 @@ function openMobileMenu() {
 /* ------------------------hamburger end------------------------------- */
 const langSwitcher = document.querySelectorAll('.lang-switcher');
 
+const cards = [];
+const galWrapper = document.querySelector('.gallery-wrapper');
+
 let lang;
-window.addEventListener('load', useSettings);
+window.addEventListener('load', () => {
+  useSettings();
+  init();
+});
 
 langSwitcher.forEach((x) => x.addEventListener('click', () => changeLanguage()));
 
@@ -50,8 +58,32 @@ function changeLanguage() {
     .querySelectorAll('.item-gallery')
     .forEach((x) => (x.textContent = interfaceText['gallery_' + lang]));
   document.querySelectorAll('.item-res').forEach((x) => (x.textContent = interfaceText['results_' + lang]));
+  loadGallery();
 }
 window.addEventListener('beforeunload', saveSettings);
 function saveSettings() {
   localStorage.setItem('eklp_brdsqz_settings', JSON.stringify({ language: lang, theme: null }));
+}
+/* -------------------- gallery --------------------------- */
+
+function init() {
+  createCards();
+  loadGallery();
+}
+
+function createCards() {
+  for (let i = 0; i < 6; i++) {
+    for (let j = 0; j < 6; j++) {
+      const b = new Bird(i, j);
+      const cb = new BirdCard(b);
+      cards.push(cb);
+    }
+  }
+}
+function loadGallery() {
+  galWrapper.innerHTML = '';
+  console.log(lang);
+  for (let i = 0; i < cards.length; i++) {
+    galWrapper.append(cards[i].drawCard(lang));
+  }
 }
