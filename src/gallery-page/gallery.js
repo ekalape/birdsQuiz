@@ -76,6 +76,7 @@ function createCards() {
     for (let j = 0; j < 6; j++) {
       const b = new Bird(i, j);
       const cb = new BirdCard(b);
+
       cards.push(cb);
     }
   }
@@ -84,6 +85,18 @@ function loadGallery() {
   galWrapper.innerHTML = '';
   console.log(lang);
   for (let i = 0; i < cards.length; i++) {
-    galWrapper.append(cards[i].drawCard(lang));
+    const card = cards[i].drawCard(lang);
+    card.dataset.index = i;
+    galWrapper.append(card);
   }
+  // console.log(cards);
 }
+
+galWrapper.addEventListener('click', (ev) => {
+  if (ev.target.classList.contains('gallery-wrapper')) return;
+  const cardIndex = ev.target.closest('.card-container').dataset.index;
+  const modal = cards[cardIndex].drawModal(lang);
+  console.log(cardIndex);
+  console.log(cards[cardIndex].bird);
+  document.body.prepend(modal);
+});

@@ -61,6 +61,9 @@ const interfaceText = {
 
   noDataYet_ru: 'Пока ничего нет',
   noDataYet_en: 'No data yet',
+
+  closeBtn_ru: 'Закрыть',
+  closeBtn_en: 'Close',
 };
 
 export default interfaceText;

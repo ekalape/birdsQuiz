@@ -87,7 +87,7 @@ function addInvite() {
   const openGallery = elGenerator('a', ['btn', 'openGal-btn'], interfaceText['openGallery_' + lang]);
 
   startQuiz.href = '../quiz-page/quiz.html';
-  openGallery.href = '../gallery-page/birds-gallery.html';
+  openGallery.href = '../gallery-page/gallery.html';
   inviteWr.append(startQuiz, openGallery);
 
   return inviteWr;
