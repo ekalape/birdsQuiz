@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;700&family=Mulish:wght@400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;700&family=Mulish:ital,wght@0,400;0,700;1,400&display=swap');
 @import '../assets/styles/variables.scss';
 
 * {
@@ -27,10 +27,10 @@ body {
   width: 100%;
   height: 100%;
 
-  background-color: $bg;
+  background-color: var(--bg);
   font-family: $f_standart;
   position: relative;
-  color: $primary;
+  color: var(--primary);
 }
 main {
   width: 100%;
@@ -57,8 +57,8 @@ main {
 .card-container {
   width: 200px;
   height: 200px;
-  border: 3px solid $secondary;
-  background-color: $bg;
+  border: 3px solid var(--secondary);
+  background-color: var(--bg);
   border-radius: 10px;
   padding: 10px;
   position: relative;
@@ -68,7 +68,7 @@ main {
   flex-direction: column;
   &:hover {
     transform: scaleY(1.1);
-    border: 3px solid $primary;
+    border: 3px solid var(--primary);
     cursor: pointer;
   }
   &:hover .b_img {
@@ -80,7 +80,7 @@ main {
     opacity: 1;
   }
   &:active .b-name {
-    color: $primary;
+    color: var(--primary);
   }
   &:active .b_img {
     transform: scaleX(0.95) scaleY(0.85) translateY(10%);
@@ -103,8 +103,9 @@ main {
   z-index: 4;
   top: 6%;
   align-self: center;
-  color: $secondary;
+  color: var(--secondary);
   opacity: 0;
+  font-weight: 700;
 }
 .modal-wrapper {
   width: 100vw;
@@ -112,7 +113,7 @@ main {
   position: fixed;
   display: flex;
   justify-content: center;
-  background-color: $bg_transparent;
+  background-color: var(--bg_transparent);
   z-index: 10;
 }
 .card-modal-container {
@@ -125,9 +126,10 @@ main {
   //align-items: center;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 250px auto auto;
-  background-color: $bg;
-  box-shadow: 0 0 10px 1px $primary;
+  background-color: var(--bg);
+  box-shadow: 0 0 10px 1px var(--prim_alt);
   gap: 10px;
+  border-radius: 10px;
   @media (max-width: 800px) {
     width: 85%;
     margin-top: 20%;
@@ -169,6 +171,7 @@ main {
   display: flex;
   flex-direction: column;
   align-self: start;
+  font-weight: 700;
   @media (max-width: 480px) {
     grid-row: 1;
     width: 90%;

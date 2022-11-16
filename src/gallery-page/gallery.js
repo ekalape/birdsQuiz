@@ -10,9 +10,19 @@ import '../assets/icons/rs_school_js.svg';
 
 import interfaceText from '../interface-text.js';
 import getSettings from '../assets/scripts/get-settings.js';
-import elGenerator from '../assets/scripts/elGenerator.js';
 import Bird from '../assets/scripts/Bird.js';
 import BirdCard from '../assets/scripts/BirdCard.js';
+
+let theme;
+
+const themeSwitcher = document.querySelectorAll('.theme-switcher');
+themeSwitcher.forEach((x) =>
+  x.addEventListener('click', () => {
+    if (theme === 'dark') theme = 'light';
+    else theme = 'dark';
+    switchTheme();
+  })
+);
 
 /* ------------------------hamburger start------------------------------- */
 const hamburger = document.querySelector('.hamburger');
@@ -43,6 +53,8 @@ function useSettings() {
   lang = settings.language === 'en' ? 'ru' : 'en';
   console.log('inside results', lang);
   changeLanguage();
+  theme = settings.theme;
+  switchTheme();
 }
 function changeLanguage() {
   if (lang === 'ru') {
@@ -62,7 +74,7 @@ function changeLanguage() {
 }
 window.addEventListener('beforeunload', saveSettings);
 function saveSettings() {
-  localStorage.setItem('eklp_brdsqz_settings', JSON.stringify({ language: lang, theme: null }));
+  localStorage.setItem('eklp_brdsqz_settings', JSON.stringify({ language: lang, theme: theme }));
 }
 /* -------------------- gallery --------------------------- */
 
@@ -100,3 +112,15 @@ galWrapper.addEventListener('click', (ev) => {
   console.log(cards[cardIndex].bird);
   document.body.prepend(modal);
 });
+
+function switchTheme() {
+  if (theme === 'dark') {
+    document.body.classList.remove('lighttheme');
+    document.body.classList.add('darktheme');
+    themeSwitcher.forEach((x) => (x.style.backgroundImage = `url("../assets/icons/sun.png")`));
+  } else {
+    document.body.classList.remove('darktheme');
+    document.body.classList.add('lighttheme');
+    themeSwitcher.forEach((x) => (x.style.backgroundImage = `url("../assets/icons/moon.png")`));
+  }
+}

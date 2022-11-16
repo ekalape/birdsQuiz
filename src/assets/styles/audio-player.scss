@@ -48,8 +48,11 @@ input[type='range']::-ms-track {
   grid-column: 1/1;
   grid-row: 1/1;
   align-self: center;
-  filter: invert(72%) sepia(68%) saturate(386%) hue-rotate(360deg) brightness(105%) contrast(101%);
+  filter: var(--filter_viol-light);
   cursor: pointer;
+  &:hover {
+    filter: var(--filter_yellow);
+  }
 }
 @media (max-width: 400px) {
   .play-pause {
@@ -80,8 +83,11 @@ input[type='range']::-ms-track {
   margin-left: auto; */
   width: 26px;
   height: 26px;
-  filter: invert(72%) sepia(68%) saturate(386%) hue-rotate(360deg) brightness(105%) contrast(101%);
+  filter: var(--filter_viol-light);
   cursor: pointer;
+  &:hover {
+    filter: var(--filter_yellow);
+  }
 }
 .sound-info {
   grid-row: 2/3;
@@ -94,6 +100,7 @@ input[type='range']::-ms-track {
 .question-audio-info__time {
   margin-left: 18%;
   font-size: 14px;
+  font-weight: 700;
 }
 .sound-range {
   width: 100%;
@@ -109,12 +116,12 @@ input[type='range']::-ms-track {
 .sound-range::-webkit-slider-thumb {
   width: 10px;
   height: 20px;
-  background: #ffd951;
+  background: var(--primary);
   cursor: pointer;
   transition: 0.3s;
   position: relative;
   // top: -7.5px;
-  box-shadow: -400px 0 0 400px #ffd951;
+  box-shadow: -400px 0 0 400px var(--primary);
 }
 .sound-range::-webkit-slider-thumb:hover {
   cursor: grab;
@@ -125,7 +132,7 @@ input[type='range']::-ms-track {
 .sound-range::-moz-range-thumb {
   width: 20px;
   height: 20px;
-  background: #ffd951;
+  background: var(--primary);
   border-radius: 50%;
   cursor: pointer;
   transition: 0.3s;
@@ -140,7 +147,7 @@ input[type='range']::-ms-track {
   width: 100%;
   height: 6px;
   border-radius: 5px;
-  background: #8161ff;
+  background: var(--accent);
   overflow: hidden;
   cursor: pointer;
 }

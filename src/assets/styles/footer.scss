@@ -22,12 +22,13 @@ footer {
   z-index: 7;
   bottom: 0;
   left: 0;
-  background-color: $bg_alt;
+
+  background-color: var(--bg_alt);
   display: flex;
   justify-content: space-between;
   padding: 10px 10%;
   align-items: center;
-  color: $secondary;
+  color: var(--secondary);
   .author-wrapper {
     display: flex;
     justify-content: center;
@@ -42,9 +43,9 @@ footer {
     display: block;
     width: 25px;
     height: 25px;
-    filter: $filter_viol-light;
+    filter: var(--filter_viol-light);
     &:hover {
-      filter: $filter_yellow;
+      filter: var(--filter_yellow);
     }
     &:active {
       transform: scale(0.9);
@@ -56,6 +57,6 @@ footer {
     width: 69px;
     background-image: url('../icons/rs_school_js.svg');
 
-    filter: $filter_viol-light;
+    filter: var(--filter_viol-light);
   }
 }

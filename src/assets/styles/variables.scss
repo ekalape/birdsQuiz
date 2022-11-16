@@ -1,57 +1,81 @@
-@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;700&family=Mulish:wght@400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;700&family=Mulish:ital,wght@0,400;0,700;1,400&display=swap');
 
-$primary: #ffd951;
-$secondary: #a38cff;
-$disabled: #47327e;
-$correct: #92b30e;
-$logo_alt: #9c62ff;
-$wrong: #ff5858;
-$light_alt: #fffcdf;
-$bg: #241e2f;
-$bg_alt: #47327e;
-$bg_transparent: rgba(36, 30, 47, 0.6);
+.lighttheme {
+  --primary: #400ba4;
+  --secondary: #714dff;
+  --bg: #fffcdf;
+  --disabled: #fee879;
+  --bg_alt: #fee879;
+  --prim_alt: #f0b400;
+  --bg_transparent: rgba(255, 253, 244, 0.6);
+  --accent: #ffd91b;
+  --accentBtn: #ffef9e;
+  --accent_alt: #47327e;
 
-$filter_yellow: invert(72%) sepia(68%) saturate(386%) hue-rotate(360deg) brightness(105%) contrast(101%);
-$filter_viol-light: invert(74%) sepia(31%) saturate(7268%) hue-rotate(211deg) brightness(99%) contrast(107%);
-$filter_disabled: invert(23%) sepia(36%) saturate(1310%) hue-rotate(219deg) brightness(94%) contrast(99%);
+  --correct: #397a00;
+  --wrong: #bb0000;
 
+  --filter_yellow: invert(22%) sepia(26%) saturate(7500%) hue-rotate(253deg) brightness(68%) contrast(127%);
+  --filter_viol-light: invert(32%) sepia(37%) saturate(3987%) hue-rotate(238deg) brightness(97%)
+    contrast(109%);
+
+  --filter_disabled: invert(87%) sepia(20%) saturate(928%) hue-rotate(357deg) brightness(103%) contrast(99%);
+}
+.darktheme {
+  --primary: #ffd951;
+  --secondary: #a38cff;
+  --bg: #241e2f;
+  --disabled: #47327e;
+  --bg_alt: #47327e;
+  --prim_alt: #ffd951;
+  --bg_transparent: rgba(36, 30, 47, 0.6);
+  --accent: #47327e;
+  --accentBtn: #47327e;
+  --accent_alt: #ffefa1;
+
+  --correct: #92b30e;
+  --wrong: #ff5858;
+
+  --filter_yellow: invert(72%) sepia(68%) saturate(386%) hue-rotate(360deg) brightness(105%) contrast(101%);
+  --filter_viol-light: invert(74%) sepia(31%) saturate(7268%) hue-rotate(211deg) brightness(99%)
+    contrast(107%);
+  --filter_disabled: invert(23%) sepia(36%) saturate(1310%) hue-rotate(219deg) brightness(94%) contrast(99%);
+}
 $f_songbird: 'Dancing Script', cursive;
 $f_standart: 'Mulish', sans-serif;
-
-$size_big: 32px;
-$size_mid: 24px;
-$size_small: 16px;
 
 @mixin btn($width, $height) {
   width: $width;
   height: $height;
   background-color: transparent;
-  border: 3px solid $secondary;
-  color: $secondary;
+  border: 3px solid var(--secondary);
+  color: var(--secondary);
   text-align: center;
   padding: 8px;
   border-radius: 10px;
   font-family: $f_standart;
   font-size: 16px;
+  font-weight: 700;
   cursor: pointer;
   position: relative;
   transition: 0.3s;
   &:hover:not(.wrong):not(.correct) {
-    border: 3px solid $primary;
-    color: $primary;
+    // border: 3px solid var(--primary);
+    color: var(--primary);
+    background-color: var(--accentBtn);
   }
   &:active:not(.wrong):not(.correct) {
-    border: 3px solid $primary;
-    color: $primary;
+    border: 3px solid var(--primary);
+    color: var(--primary);
     transform: scale(0.94);
   }
   &.wrong {
-    border: 3px solid $wrong;
-    color: $wrong;
+    border: 3px solid var(--wrong);
+    color: var(--wrong);
   }
   &.correct {
-    border: 3px solid $correct;
-    color: $correct;
+    border: 3px solid var(--correct);
+    color: var(--correct);
   }
 }
 @mixin withBg($url) {

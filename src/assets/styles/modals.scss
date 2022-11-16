@@ -17,7 +17,7 @@
   justify-content: center;
 
   // align-items: center;
-  background-color: $bg_transparent;
+  background-color: var(--bg_transparent);
   z-index: 10;
 }
 .message-container {
@@ -29,8 +29,8 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  background-color: $bg;
-  box-shadow: 0 0 10px 1px $primary;
+  background-color: var(--bg);
+  box-shadow: 0 0 10px 1px var(--prim_alt);
   gap: 10px;
   @media (max-width: 800px) {
     width: 85%;
@@ -43,19 +43,20 @@
 .message-image {
   width: 60px;
   height: 60px;
-  filter: $filter_yellow;
+  filter: var(--filter_yellow);
 }
 .message-title {
   font-size: 1.4rem;
   margin-bottom: 20px;
-  color: $secondary;
+  font-weight: 700;
+  color: var(--secondary);
 }
 .message-body {
   font-size: 1.2rem;
-  color: $secondary;
+  color: var(--secondary);
 
   &:first-of-type {
-    color: $primary;
+    color: var(--primary);
   }
 }
 
@@ -81,21 +82,21 @@
 }
 @keyframes shineBtn {
   0% {
-    border: 3px solid $primary;
-    color: $primary;
+    border: 3px solid var(--primary);
+    color: var(--primary);
   }
   30% {
-    box-shadow: 0 0 10px 1px $primary;
+    box-shadow: 0 0 10px 1px var(--prim_alt);
   }
   60% {
-    box-shadow: 0 0 20px 0px $primary;
+    box-shadow: 0 0 20px 0px var(--prim_alt);
   }
   /*  80% {
-    box-shadow: 8px 8px 10px $primary, -8px -8px 10px $primary;
+    box-shadow: 8px 8px 10px var(--primary), -8px -8px 10px var(--primary);
   } */
   100% {
     box-shadow: none;
-    border: 3px solid $secondary;
-    color: $secondary;
+    border: 3px solid var(--secondary);
+    color: var(--secondary);
   }
 }

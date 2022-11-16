@@ -1,5 +1,3 @@
-import '../assets/styles/variables.scss';
-
 import './quiz.scss';
 import '../assets/styles/audio-player.scss';
 import '../assets/styles/header.scss';
@@ -28,6 +26,18 @@ import '../assets/icons/volume-up.png';
 
 const explanationPhrase = document.querySelector('.explanation-phrase');
 const langSwitcher = document.querySelectorAll('.lang-switcher');
+
+let theme;
+
+const themeSwitcher = document.querySelectorAll('.theme-switcher');
+themeSwitcher.forEach((x) =>
+  x.addEventListener('click', () => {
+    if (theme === 'dark') theme = 'light';
+    else theme = 'dark';
+    switchTheme();
+  })
+);
+
 /* ------------------------hamburger start------------------------------- */
 const hamburger = document.querySelector('.hamburger');
 const menuMob = document.querySelector('.menu-mobile');
@@ -105,7 +115,7 @@ function interfaceLanguageChange() {
   if (hiddenBirdName.textContent !== '******') hiddenBirdName.textContent = game.hiddenBird['name_' + lang];
 }
 function saveSettings() {
-  localStorage.setItem('eklp_brdsqz_settings', JSON.stringify({ language: lang, theme: null }));
+  localStorage.setItem('eklp_brdsqz_settings', JSON.stringify({ language: lang, theme: theme }));
 }
 function useSavedSettings() {
   const settings = getSettings();
@@ -116,6 +126,8 @@ function useSavedSettings() {
 
     interfaceLanguageChange();
   }
+  theme = settings.theme;
+  switchTheme();
 }
 export function saveRecords(res) {
   let arr = [];
@@ -126,4 +138,17 @@ export function saveRecords(res) {
   arr.push(res);
   localStorage.setItem('eklp_brdsqz_records', JSON.stringify(arr));
 }
+
+function switchTheme() {
+  if (theme === 'dark') {
+    document.body.classList.remove('lighttheme');
+    document.body.classList.add('darktheme');
+    themeSwitcher.forEach((x) => (x.style.backgroundImage = `url("../assets/icons/sun.png")`));
+  } else {
+    document.body.classList.remove('darktheme');
+    document.body.classList.add('lighttheme');
+    themeSwitcher.forEach((x) => (x.style.backgroundImage = `url("../assets/icons/moon.png")`));
+  }
+}
+
 window.addEventListener('beforeunload', saveSettings);

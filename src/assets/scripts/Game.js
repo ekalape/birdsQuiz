@@ -219,7 +219,7 @@ export default class Game {
     const image = elGenerator('img', 'message-image');
     image.src = '../assets/icons/corona.png';
 
-    const title = elGenerator('h2', 'message-title', res.grats);
+    const title = elGenerator('h2', 'message-title', res.setGrats(dom.lang));
     const message = elGenerator(
       'p',
       'message-body',

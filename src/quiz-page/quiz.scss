@@ -1,4 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;700&family=Mulish:wght@400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;700&family=Mulish:ital,wght@0,400;0,700;1,400&display=swap');
+
 @import '../assets/styles/variables.scss';
 
 * {
@@ -10,6 +11,7 @@
 
 html {
   font-size: 20px;
+
   @media (max-width: 800px) {
     font-size: 18px;
   }
@@ -29,11 +31,12 @@ body {
   width: 100%;
   height: 100%;
 
-  background-color: $bg;
+  background-color: var(--bg);
   font-family: $f_standart;
   position: relative;
-  color: $primary;
+  color: var(--primary);
 }
+
 main {
   width: 100%;
   min-height: calc(100vh - 70px);
@@ -45,8 +48,8 @@ main {
 }
 /* -----------------------next-btn----------------------- */
 .next-btn {
-  @include btn(260px, 60px);
-  margin-top: 30px;
+  @include btn(260px, 50px);
+  margin-top: 10px;
   position: relative;
   bottom: 0;
   text-align: center;
@@ -54,22 +57,23 @@ main {
   transition: 0.2s;
 
   &:hover .next-text::after {
-    filter: $filter_yellow;
+    filter: var(--filter_yellow);
   }
   &.disabled {
-    color: $disabled;
-    border: 3px solid $disabled;
+    color: var(--disabled);
+    border: 3px solid var(--disabled);
     pointer-events: none;
     &.disabled .next-text::after {
-      filter: $filter_disabled;
+      filter: var(--filter_disabled);
     }
   }
 }
 .next-text {
   position: relative;
   transition: 0s;
+  font-weight: 700;
   &:hover {
-    color: $primary;
+    color: var(--primary);
   }
   &::after {
     content: '';
@@ -79,7 +83,7 @@ main {
     background-image: url('../assets/icons/dobbleNext.png');
     background-size: cover;
     background-position: center;
-    filter: $filter_viol-light;
+    filter: var(--filter_viol-light);
     transition: 0.4s;
     position: absolute;
     top: 1px;
@@ -121,8 +125,8 @@ main {
   width: 60px;
   height: 60px;
   border-radius: 10px;
-  border: 3px solid $secondary;
-  color: $secondary;
+  border: 3px solid var(--secondary);
+  color: var(--secondary);
   text-align: center;
   font-size: 32px;
   padding: 7px;
@@ -142,13 +146,14 @@ main {
 }
 /* ------------------------------------------------other options---------------------------------- */
 .inprogress {
-  border: 3px solid $primary;
-  color: $primary;
-  background-color: $secondary;
+  border: 3px solid var(--primary);
+  color: var(--primary);
+  background-color: var(--bg_alt);
   width: 80px;
   height: 80px;
   font-size: 48px;
-  box-shadow: 0px 0px 7px 1px $primary;
+  box-shadow: 0px 0px 7px 1px var(--prim_alt);
+  font-weight: 700;
 
   @media (max-width: 700px) {
     padding: 7px;
@@ -164,12 +169,12 @@ main {
   }
 }
 .perfect-result {
-  border: 3px solid $correct;
-  color: $correct;
+  border: 3px solid var(--correct);
+  color: var(--correct);
 }
 .worst-result {
-  border: 3px solid $wrong;
-  color: $wrong;
+  border: 3px solid var(--wrong);
+  color: var(--wrong);
 }
 /* ----------------------------------------------------------------------------------------------- */
 
@@ -178,7 +183,7 @@ main {
   height: 30px;
   // background-image: url('../assets/icons/next2.png');
   @include withBg('../assets/icons/dobbleNext.png');
-  filter: $filter_viol-light;
+  filter: var(--filter_viol-light);
   @media (max-width: 800px) {
     width: 22px;
     height: 22px;
@@ -188,13 +193,13 @@ main {
   }
 }
 .disabled-text {
-  color: $disabled;
+  color: var(--disabled);
 }
 .disabled-btn {
-  border: 3px solid $disabled;
+  border: 3px solid var(--disabled);
 }
 .disabled-arrow {
-  filter: $filter_disabled;
+  filter: var(--filter_disabled);
 }
 /* --------------left-side---------------------- */
 .left-block,
@@ -215,12 +220,14 @@ main {
   width: 100%;
 }
 .question-block {
+  width: 100%;
   display: grid;
-  grid-template-columns: 1fr 3fr;
+  grid-template-columns: 1fr 2fr;
   align-self: flex-start;
+  padding: 0 10px;
 
   @media (max-width: 800px) /* and (min-width: 640px) */ {
-    grid-template-columns: 1fr 4fr;
+    grid-template-columns: 1fr 3fr;
   }
 }
 .question-block__image {
@@ -247,6 +254,7 @@ main {
 }
 .question-block__name {
   font-size: 1.5rem;
+  font-weight: 700;
 }
 /* .question-block__audio {
   height: 80px;
@@ -283,30 +291,33 @@ main {
 .answerBtn {
   @include btn(100%, 50px);
 }
-.description-block {
-  height: 330px;
-}
+/* .description-block {
+  height: 320px;
+  @media (max-width: 800px) {
+    height: auto;
+  }
+} */
 .description-block:not(.empty-block) {
   display: grid;
   padding: 10px;
   grid-template-columns: 1fr 3fr;
-  grid-template-rows: 110px auto auto;
+  grid-template-rows: 150px auto auto;
   row-gap: 10px;
   @media (max-width: 1600px) {
     grid-template-columns: 1fr 2fr;
-    grid-template-rows: 120px auto auto;
+    grid-template-rows: 130px auto auto;
     justify-items: center;
   }
   @media (max-width: 1300px) {
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: 130px auto auto;
+    grid-template-rows: 140px auto auto;
   }
   @media (max-width: 800px) {
-    grid-template-rows: 150px auto auto;
+    grid-template-rows: 180px auto auto;
   }
   @media (max-width: 640px) {
     grid-template-columns: 1fr;
-    grid-template-rows: auto 160px auto auto;
+    grid-template-rows: auto 200px auto auto;
     justify-items: center;
   }
 }
@@ -315,7 +326,7 @@ main {
   justify-items: center;
 }
 .explanation-phrase {
-  color: $secondary;
+  color: var(--secondary);
   margin: 20px 10px 0 10px;
   text-align: center;
 }
@@ -324,6 +335,7 @@ main {
   max-width: 100%;
   min-width: 80%;
   height: 100%;
+
   background-image: url('https://live.staticflickr.com//65535//49298804222_474cfe8682.jpg');
   background-repeat: no-repeat;
   background-position: center;
@@ -350,6 +362,7 @@ main {
 .description-block__name {
   display: flex;
   flex-direction: column;
+  font-weight: 700;
   @media (max-width: 480px) {
     grid-row: 1;
     width: 90%;

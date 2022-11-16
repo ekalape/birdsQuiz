@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;700&family=Mulish:wght@400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;700&family=Mulish:ital,wght@0,400;0,700;1,400&display=swap');
 @import '../assets/styles/variables.scss';
 
 * {
@@ -10,7 +10,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: $bg;
+  background-color: var(--bg);
   font-family: $f_standart;
 }
 .logo-wrapper {
@@ -40,11 +40,11 @@ body {
     }
   }
   h2:first-of-type {
-    color: $primary;
+    color: var(--primary);
     top: -30px;
   }
   h2:last-of-type {
-    color: $secondary;
+    color: var(--secondary);
     top: 10px;
   }
   img {
@@ -134,7 +134,7 @@ body {
     background-size: cover;
     z-index: 5;
     border-radius: 50%;
-    box-shadow: 0 0 30px $primary;
+    box-shadow: 0 0 30px var(--prim_alt);
     &::before {
       content: '?';
       display: block;
@@ -147,21 +147,21 @@ body {
       font-weight: bold;
       color: transparent;
       -webkit-text-stroke-width: 2px;
-      -webkit-text-stroke-color: $primary;
+      -webkit-text-stroke-color: var(--primary);
       text-align: center;
     }
   }
 }
 a {
   text-decoration: none;
-  color: $primary;
+  color: var(--primary);
   transition: 0.3s;
   &:visited {
     text-decoration: none;
   }
   &:hover {
     text-decoration: none;
-    text-shadow: 0 0 5px $primary;
+    text-shadow: 0 0 5px var(--primary);
   }
   &:active {
     transform: scale(0.9);
@@ -181,7 +181,7 @@ a {
   justify-content: center;
   align-items: center;
   gap: 10%;
-  color: $primary;
+  color: var(--primary);
   font-size: 34px;
 
   text-align: center;
@@ -205,7 +205,7 @@ a {
 }
 
 .btn {
-  border: 3px solid $primary;
+  border: 3px solid var(--primary);
   width: 360px;
   font-size: 1.5rem;
   border-radius: 10px;
