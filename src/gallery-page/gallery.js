@@ -14,10 +14,12 @@ import Bird from '../assets/scripts/Bird.js';
 import BirdCard from '../assets/scripts/BirdCard.js';
 
 let theme;
+const clickSound = new Audio('../assets/sounds/click1.wav');
 
 const themeSwitcher = document.querySelectorAll('.theme-switcher');
 themeSwitcher.forEach((x) =>
   x.addEventListener('click', () => {
+    clickSound.play();
     if (theme === 'dark') theme = 'light';
     else theme = 'dark';
     switchTheme();
@@ -31,6 +33,7 @@ const menuMob = document.querySelector('.menu-mobile');
 hamburger.addEventListener('click', openMobileMenu);
 
 function openMobileMenu() {
+  clickSound.play();
   hamburger.classList.toggle('open');
   menuMob.classList.toggle('open');
 }
@@ -46,7 +49,14 @@ window.addEventListener('load', () => {
   init();
 });
 
-langSwitcher.forEach((x) => x.addEventListener('click', () => changeLanguage()));
+langSwitcher.forEach((x) =>
+  x.addEventListener('click', () => {
+    clickSound.play();
+    changeLanguage();
+  })
+);
+
+document.querySelectorAll('.menu__item').forEach((x) => x.addEventListener('click', () => clickSound.play()));
 
 function useSettings() {
   const settings = getSettings();
@@ -106,6 +116,7 @@ function loadGallery() {
 
 galWrapper.addEventListener('click', (ev) => {
   if (ev.target.classList.contains('gallery-wrapper')) return;
+  clickSound.play();
   const cardIndex = ev.target.closest('.card-container').dataset.index;
   const modal = cards[cardIndex].drawModal(lang);
   console.log(cardIndex);

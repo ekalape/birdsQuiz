@@ -20,7 +20,9 @@ export default class Game {
   defaultImageSrc = '../assets/icons/bird-logo-viol.svg';
   questionPlayer;
   descriptionPlayer;
-
+  correctAnswerSound;
+  wrongAnswerSound;
+  clickSound;
   descriptionNodes = null;
 
   constructor() {
@@ -32,6 +34,9 @@ export default class Game {
     this.currentRound = 1;
     this.completed = false;
     this.answered = false;
+    this.correctAnswerSound = new Audio('../assets/sounds/correctAnswer.wav');
+    this.wrongAnswerSound = new Audio('../assets/sounds/wrongAnswer.wav');
+    this.clickSound = new Audio('../assets/sounds/click1.wav');
   }
 
   startGame() {
@@ -50,7 +55,7 @@ export default class Game {
     }
 
     this.hiddenBird = this.currentRoundBirds[this.pickHiddenBirdId()];
-    console.log(this.currentRound);
+
     this.shuffleBirds(this.currentRoundBirds);
 
     this.questionPlayer = new audioPlayer(
@@ -92,13 +97,18 @@ export default class Game {
     });
   }
   checkAnswer(e) {
-    console.log(e.target);
+    this.clickSound.play();
     if (this.isCorrectAnswer(+e.target.dataset.id)) {
+      if (!this.answered) this.correctAnswerSound.play();
       this.rightAnswer();
+
       e.target.classList.add('correct');
     } else {
       this.wrongAnswer(e.target);
-      if (!this.answered) e.target.classList.add('wrong');
+      if (!this.answered) {
+        e.target.classList.add('wrong');
+        this.wrongAnswerSound.play();
+      }
     }
   }
   pickHiddenBirdId() {
@@ -123,6 +133,7 @@ export default class Game {
     dom.hiddenBirdLatin.textContent = this.hiddenBird['latinName_' + dom.lang];
     dom.nextBtn.classList.remove('disabled');
     this.answered = true;
+
     if (this.questionPlayer.started) this.questionPlayer.playPause();
 
     if (this.currentRound === 6) {
@@ -180,7 +191,6 @@ export default class Game {
   }
 
   drawDescriptionBlock(bird) {
-    console.log(bird);
     const d_image = elGenerator('div', 'description-block__image');
     d_image.style.backgroundImage = `url(${bird.image})`;
     const d_fullname = elGenerator('div', 'description-block__name');
@@ -194,7 +204,7 @@ export default class Game {
       'description-block__description',
       bird['description_' + dom.lang]
     );
-    console.log(dom.description_block);
+
     this.descriptionNodes = {
       name: d_name,
       latin: d_latin,
@@ -238,10 +248,12 @@ export default class Game {
     const openRes = elGenerator('button', 'answer-btn', interfaceText['results_' + dom.lang]);
 
     tryAgain.addEventListener('click', (e) => {
+      this.clickSound.play();
       bgWrapper.remove();
       dom.startNewGame();
     });
     openRes.addEventListener('click', () => {
+      this.clickSound.play();
       bgWrapper.remove();
       window.location.href = '../../results-page/results.html';
     });

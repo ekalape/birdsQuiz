@@ -7,8 +7,7 @@ import '../styles/audio-player.scss';
 export default class BirdCard {
   constructor(bird) {
     this.bird = bird;
-    /*   this.audioContainer = elGenerator('div', 'card__audio-container');
-    this.audioPlayer = new audioPlayer(this.bird.sound, this.audioContainer); */
+    this.clickSound = new Audio('../assets/sounds/click1.wav');
   }
   drawCard(lang) {
     const cont = elGenerator('div', 'card-container');
@@ -46,7 +45,10 @@ export default class BirdCard {
     );
     const closeBtn = elGenerator('button', 'close-btn', interfaceText['closeBtn_' + lang]);
     cardModal.append(d_image, d_fullname, aContainer, d_description, closeBtn);
-    closeBtn.addEventListener('click', () => m_bg.remove());
+    closeBtn.addEventListener('click', () => {
+      this.clickSound.play();
+      m_bg.remove();
+    });
     m_bg.append(cardModal);
     return m_bg;
   }

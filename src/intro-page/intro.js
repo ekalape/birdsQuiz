@@ -8,6 +8,8 @@ import elGenerator from '../assets/scripts/elGenerator.js';
 import getSettings from '../assets/scripts/get-settings.js';
 import interfaceText from '../interface-text.js';
 
+const clickSound = new Audio('../assets/sounds/click1.wav');
+
 getImgs();
 const cont = document.querySelector('.wrapper');
 async function getImgs() {
@@ -85,7 +87,7 @@ function addInvite() {
   const inviteWr = elGenerator('div', 'invite');
   const startQuiz = elGenerator('a', ['btn', 'startQuiz-btn'], interfaceText['start_' + lang]);
   const openGallery = elGenerator('a', ['btn', 'openGal-btn'], interfaceText['openGallery_' + lang]);
-
+  [startQuiz, openGallery].forEach((x) => x.addEventListener('click', () => clickSound.play()));
   startQuiz.href = '../quiz-page/quiz.html';
   openGallery.href = '../gallery-page/gallery.html';
   inviteWr.append(startQuiz, openGallery);

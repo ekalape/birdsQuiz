@@ -47,14 +47,20 @@ const interfaceText = {
   start_ru: 'Начать викторину',
   start_en: 'Start quiz',
 
-  gratsBest_ru: 'Отлично!',
-  gratsBest_en: 'Really great!',
+  gratsAlmostBest_ru: 'Отлично!',
+  gratsAlmostBest_en: 'Really great!',
+
+  gratsBest_ru: 'Идеальный результат!',
+  gratsBest_en: 'Perfect result!',
 
   gratsWorst_ru: 'Вы можете лучше!',
   gratsWorst_en: 'You can go better!',
 
   gratsMed_ru: 'Очень неплохо!',
   gratsMed_en: 'Not so bad!',
+
+  gratsHigh_ru: 'Хороший результат!',
+  gratsHigh_en: 'Very good score!',
 
   lastRecordsTitle_ru: 'Последние результаты',
   lastRecordsTitle_en: 'The last records',
@@ -64,6 +70,24 @@ const interfaceText = {
 
   closeBtn_ru: 'Закрыть',
   closeBtn_en: 'Close',
+
+  round0_ru: 'Разминка',
+  round0_en: 'Warm up',
+
+  round1_ru: 'Воробьиные',
+  round1_en: 'Passerines',
+
+  round2_ru: 'Лесные птицы',
+  round2_en: 'Forest birds',
+
+  round3_ru: 'Певчие птицы',
+  round3_en: 'Songbirds',
+
+  round4_ru: 'Хищные птицы',
+  round4_en: 'Predator birds',
+
+  round5_ru: 'Морские птицы',
+  round5_en: 'Seabirds',
 };
 
 export default interfaceText;

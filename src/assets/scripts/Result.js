@@ -23,6 +23,10 @@ export default class Result {
   setGrats(lang) {
     return this.score === 30
       ? interfaceText['gratsBest_' + lang]
+      : this.score < 30 && this.score >= 22
+      ? interfaceText['gratsAlmostBest_' + lang]
+      : this.score < 22 && this.score >= 14
+      ? interfaceText['gratsHigh_' + lang]
       : this.score >= 0 && this.score <= 5
       ? interfaceText['gratsWorst_' + lang]
       : interfaceText['gratsMed_' + lang];

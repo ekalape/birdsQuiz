@@ -23,7 +23,10 @@ import '../assets/icons/dobbleNext.png';
 import '../assets/icons/premio2.png';
 import '../assets/icons/volume-mute.png';
 import '../assets/icons/volume-up.png';
+import '../assets/icons/moon.png';
+import '../assets/icons/sun.png';
 
+const clickSound = new Audio('../assets/sounds/click1.wav');
 const explanationPhrase = document.querySelector('.explanation-phrase');
 const langSwitcher = document.querySelectorAll('.lang-switcher');
 
@@ -32,6 +35,7 @@ let theme;
 const themeSwitcher = document.querySelectorAll('.theme-switcher');
 themeSwitcher.forEach((x) =>
   x.addEventListener('click', () => {
+    clickSound.play();
     if (theme === 'dark') theme = 'light';
     else theme = 'dark';
     switchTheme();
@@ -45,6 +49,7 @@ const menuMob = document.querySelector('.menu-mobile');
 hamburger.addEventListener('click', openMobileMenu);
 
 function openMobileMenu() {
+  clickSound.play();
   hamburger.classList.toggle('open');
   menuMob.classList.toggle('open');
 }
@@ -66,9 +71,18 @@ nextBtnText.textContent = interfaceText['next_' + lang];
 export const storylineInd = document.querySelectorAll('.round');
 export const description_block = document.querySelector('.description-block');
 
-langSwitcher.forEach((x) => x.addEventListener('click', () => interfaceLanguageChange()));
+langSwitcher.forEach((x) =>
+  x.addEventListener('click', () => {
+    clickSound.play();
+    interfaceLanguageChange();
+  })
+);
 
 window.addEventListener('load', useSavedSettings);
+
+document.querySelectorAll('.menu__item').forEach((x) => x.addEventListener('click', () => clickSound.play()));
+
+nextBtn.addEventListener('click', () => clickSound.play());
 
 export function startNewGame() {
   storylineInd.forEach((x) => {
@@ -152,3 +166,13 @@ function switchTheme() {
 }
 
 window.addEventListener('beforeunload', saveSettings);
+
+storylineInd.forEach((x) => x.addEventListener('mouseover', drawHint));
+
+function drawHint(e) {
+  console.log(e.target.dataset.round);
+  let n = 'round' + e.target.dataset.round;
+  const hint = elGenerator('span', 'hint', interfaceText[n + '_' + lang]);
+  e.target.append(hint);
+  e.target.addEventListener('mouseout', () => hint.remove());
+}

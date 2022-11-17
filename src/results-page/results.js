@@ -18,10 +18,12 @@ import getSettings from '../assets/scripts/get-settings.js';
 import elGenerator from '../assets/scripts/elGenerator.js';
 
 let theme;
+const clickSound = new Audio('../assets/sounds/click1.wav');
 
 const themeSwitcher = document.querySelectorAll('.theme-switcher');
 themeSwitcher.forEach((x) =>
   x.addEventListener('click', () => {
+    clickSound.play();
     if (theme === 'dark') theme = 'light';
     else theme = 'dark';
     switchTheme();
@@ -35,6 +37,7 @@ const menuMob = document.querySelector('.menu-mobile');
 hamburger.addEventListener('click', openMobileMenu);
 
 function openMobileMenu() {
+  clickSound.play();
   hamburger.classList.toggle('open');
   menuMob.classList.toggle('open');
 }
@@ -44,7 +47,13 @@ const langSwitcher = document.querySelectorAll('.lang-switcher');
 let lang;
 window.addEventListener('load', useSettings);
 
-langSwitcher.forEach((x) => x.addEventListener('click', () => changeLanguage()));
+langSwitcher.forEach((x) =>
+  x.addEventListener('click', () => {
+    clickSound.play();
+    changeLanguage();
+  })
+);
+document.querySelectorAll('.menu__item').forEach((x) => x.addEventListener('click', () => clickSound.play()));
 
 function useSettings() {
   const settings = getSettings();
@@ -78,8 +87,6 @@ function drawTable() {
   if (localStorage.getItem('eklp_brdsqz_records')) {
     const data = JSON.parse(localStorage.getItem('eklp_brdsqz_records'));
     data.forEach((x) => {
-      console.log(x.visualization);
-      console.log(lang);
       const dataLine = elGenerator('li', 'records-line', x.visualization[lang]);
       outer.append(dataLine);
     });
