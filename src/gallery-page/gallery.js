@@ -61,7 +61,7 @@ document.querySelectorAll('.menu__item').forEach((x) => x.addEventListener('clic
 function useSettings() {
   const settings = getSettings();
   lang = settings.language === 'en' ? 'ru' : 'en';
-  console.log('inside results', lang);
+
   changeLanguage();
   theme = settings.theme;
   switchTheme();
@@ -105,13 +105,12 @@ function createCards() {
 }
 function loadGallery() {
   galWrapper.innerHTML = '';
-  console.log(lang);
+
   for (let i = 0; i < cards.length; i++) {
     const card = cards[i].drawCard(lang);
     card.dataset.index = i;
     galWrapper.append(card);
   }
-  // console.log(cards);
 }
 
 galWrapper.addEventListener('click', (ev) => {
@@ -119,9 +118,8 @@ galWrapper.addEventListener('click', (ev) => {
   clickSound.play();
   const cardIndex = ev.target.closest('.card-container').dataset.index;
   const modal = cards[cardIndex].drawModal(lang);
-  console.log(cardIndex);
-  console.log(cards[cardIndex].bird);
   document.body.prepend(modal);
+  document.body.style.overflow = 'hidden';
 });
 
 function switchTheme() {

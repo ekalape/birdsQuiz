@@ -169,6 +169,7 @@ export default class Game {
       const res = new Result(new Date(), this.fullPoints, dom.lang);
 
       document.body.prepend(this.drawResultMessage(res));
+      document.body.style.overflow = 'hidden';
       dom.saveRecords(res);
       //send result to main page for records
     }
@@ -250,12 +251,14 @@ export default class Game {
     tryAgain.addEventListener('click', (e) => {
       this.clickSound.play();
       bgWrapper.remove();
+      document.body.style.overflow = '';
       dom.startNewGame();
     });
     openRes.addEventListener('click', () => {
       this.clickSound.play();
       bgWrapper.remove();
-      window.location.href = '../../results-page/results.html';
+      document.body.style.overflow = '';
+      window.location.href = '../results-page/results.html';
     });
 
     btnsWrapper.append(tryAgain, openRes);

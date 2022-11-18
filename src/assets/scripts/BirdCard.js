@@ -11,7 +11,6 @@ export default class BirdCard {
   }
   drawCard(lang) {
     const cont = elGenerator('div', 'card-container');
-    // cont.dataset.index = this.bird.index;
 
     const b_name = elGenerator('span', 'b-name', this.bird['name_' + lang]);
 
@@ -27,6 +26,7 @@ export default class BirdCard {
     const cardModal = elGenerator('div', 'card-modal-container');
     m_bg.addEventListener('click', (e) => {
       if (!e.target.classList.contains('modal-wrapper')) return;
+      document.body.style.overflow = '';
       m_bg.remove();
     });
 
@@ -47,6 +47,7 @@ export default class BirdCard {
     cardModal.append(d_image, d_fullname, aContainer, d_description, closeBtn);
     closeBtn.addEventListener('click', () => {
       this.clickSound.play();
+      document.body.style.overflow = '';
       m_bg.remove();
     });
     m_bg.append(cardModal);

@@ -18,7 +18,7 @@ async function getImgs() {
   );
   const arr = await res.json();
   const ids = arr.photos.photo.map((x) => [x.server, x.id, x.secret]);
-  console.log(arr);
+
   for (let i = 0; i < ids.length; i++) {
     cont.append(customImg(`https://live.staticflickr.com/${ids[i][0]}/${ids[i][1]}_${ids[i][2]}_n.jpg`));
   }

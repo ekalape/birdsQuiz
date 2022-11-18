@@ -15,6 +15,7 @@ import getSettings from '../assets/scripts/get-settings.js';
 
 import '../assets/icons/bird-logo-yellow.svg';
 import '../assets/icons/bird-logo-viol.svg';
+import '../assets/icons/logo_black.png';
 import '../assets/icons/rs_school_js.svg';
 import '../assets/icons/play-black.svg';
 import '../assets/icons/pause-black.svg';
@@ -25,6 +26,10 @@ import '../assets/icons/volume-mute.png';
 import '../assets/icons/volume-up.png';
 import '../assets/icons/moon.png';
 import '../assets/icons/sun.png';
+
+import '../assets/sounds/click1.wav';
+import '../assets/sounds/correctAnswer.wav';
+import '../assets/sounds/wrongAnswer.wav';
 
 const clickSound = new Audio('../assets/sounds/click1.wav');
 const explanationPhrase = document.querySelector('.explanation-phrase');
@@ -103,7 +108,7 @@ export function prepareForNewGame() {
 }
 
 function interfaceLanguageChange() {
-  console.log('inside change lang function', lang);
+
   if (lang === 'ru') {
     lang = 'en';
     langSwitcher.forEach((x) => (x.textContent = 'RU'));
@@ -133,7 +138,7 @@ function saveSettings() {
 }
 function useSavedSettings() {
   const settings = getSettings();
-  console.log(settings.language);
+
   if (settings.language) {
     if (settings.language === 'ru') lang = 'en';
     else lang = 'ru';
@@ -148,7 +153,7 @@ export function saveRecords(res) {
   if (localStorage.getItem('eklp_brdsqz_records')) {
     arr = JSON.parse(localStorage.getItem('eklp_brdsqz_records'));
   }
-  console.log(arr);
+
   arr.push(res);
   localStorage.setItem('eklp_brdsqz_records', JSON.stringify(arr));
 }
@@ -170,7 +175,7 @@ window.addEventListener('beforeunload', saveSettings);
 storylineInd.forEach((x) => x.addEventListener('mouseover', drawHint));
 
 function drawHint(e) {
-  console.log(e.target.dataset.round);
+
   let n = 'round' + e.target.dataset.round;
   const hint = elGenerator('span', 'hint', interfaceText[n + '_' + lang]);
   e.target.append(hint);

@@ -58,7 +58,7 @@ document.querySelectorAll('.menu__item').forEach((x) => x.addEventListener('clic
 function useSettings() {
   const settings = getSettings();
   lang = settings.language === 'en' ? 'ru' : 'en';
-  console.log('inside results', lang);
+
   changeLanguage();
   theme = settings.theme;
   switchTheme();
