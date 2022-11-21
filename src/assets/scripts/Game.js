@@ -99,10 +99,11 @@ export default class Game {
   checkAnswer(e) {
     this.clickSound.play();
     if (this.isCorrectAnswer(+e.target.dataset.id)) {
-      if (!this.answered) this.correctAnswerSound.play();
-      this.rightAnswer();
-
-      e.target.classList.add('correct');
+      if (!this.answered) {
+        this.correctAnswerSound.play();
+        this.rightAnswer();
+        e.target.classList.add('correct');
+      }
     } else {
       this.wrongAnswer(e.target);
       if (!this.answered) {

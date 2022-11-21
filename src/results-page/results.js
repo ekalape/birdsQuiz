@@ -35,6 +35,13 @@ const hamburger = document.querySelector('.hamburger');
 const menuMob = document.querySelector('.menu-mobile');
 
 hamburger.addEventListener('click', openMobileMenu);
+menuMob.addEventListener('click', function (e) {
+  if (['menu__item', 'lang-switcher', 'theme-switcher'].some((x) => e.target.classList.contains(x))) {
+    console.log(e.target);
+    menuMob.classList.remove('open');
+    hamburger.classList.remove('open');
+  }
+});
 
 function openMobileMenu() {
   clickSound.play();

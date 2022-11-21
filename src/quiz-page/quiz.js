@@ -52,6 +52,13 @@ const hamburger = document.querySelector('.hamburger');
 const menuMob = document.querySelector('.menu-mobile');
 
 hamburger.addEventListener('click', openMobileMenu);
+menuMob.addEventListener('click', function (e) {
+  if (['menu__item', 'lang-switcher', 'theme-switcher'].some((x) => e.target.classList.contains(x))) {
+    console.log(e.target);
+    menuMob.classList.remove('open');
+    hamburger.classList.remove('open');
+  }
+});
 
 function openMobileMenu() {
   clickSound.play();
@@ -108,7 +115,6 @@ export function prepareForNewGame() {
 }
 
 function interfaceLanguageChange() {
-
   if (lang === 'ru') {
     lang = 'en';
     langSwitcher.forEach((x) => (x.textContent = 'RU'));
@@ -175,7 +181,6 @@ window.addEventListener('beforeunload', saveSettings);
 storylineInd.forEach((x) => x.addEventListener('mouseover', drawHint));
 
 function drawHint(e) {
-
   let n = 'round' + e.target.dataset.round;
   const hint = elGenerator('span', 'hint', interfaceText[n + '_' + lang]);
   e.target.append(hint);
