@@ -33,6 +33,7 @@ import '../assets/sounds/wrongAnswer.wav';
 
 const clickSound = new Audio('../assets/sounds/click1.wav');
 const explanationPhrase = document.querySelector('.explanation-phrase');
+
 const langSwitcher = document.querySelectorAll('.lang-switcher');
 
 let theme;
@@ -132,7 +133,11 @@ function interfaceLanguageChange() {
   document.querySelector('.sc').textContent = interfaceText['score_' + lang];
 
   nextBtnText.textContent = interfaceText['next_' + lang];
-  explanationPhrase.textContent = interfaceText['hint_' + lang];
+  if (description_block.classList.contains('empty-block')) {
+    description_block.innerHTML = '';
+    description_block.append(elGenerator('span', 'explanation-phrase', interfaceText['hint_' + lang]));
+  }
+
   if (game) {
     game.changeBtnsLanguage();
     game.translateDescriptionBlock();
