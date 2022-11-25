@@ -132,7 +132,9 @@ function interfaceLanguageChange() {
 
   document.querySelector('.sc').textContent = interfaceText['score_' + lang];
 
-  nextBtnText.textContent = interfaceText['next_' + lang];
+  if (game.currentRound === 6 && game.completed)
+    nextBtnText.textContent = interfaceText['btnResults_' + lang];
+  else nextBtnText.textContent = interfaceText['next_' + lang];
   if (description_block.classList.contains('empty-block')) {
     description_block.innerHTML = '';
     description_block.append(elGenerator('span', 'explanation-phrase', interfaceText['hint_' + lang]));
